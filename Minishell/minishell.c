@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minishell.c                                        :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: g65420029 <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 06:18:17 by g65420029         #+#    #+#             */
-/*   Updated: 2023/05/05 06:18:20 by g65420029        ###   ########.fr       */
+/*   Updated: 2023/05/06 07:12:20 by kanit_c          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include "minishell.h"
 
 #define MAX_CMD_LENGTH 100
 
@@ -25,7 +26,7 @@ int main() {
     int status;
 
     while (1) {
-        printf("Andromeda$ ");  // Display prompt
+        ft_printf("Andromeda$ ");  // Display prompt
         fgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
         cmd[strcspn(cmd, "\n")] = '\0';  // Remove trailing newline
 
