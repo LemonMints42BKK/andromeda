@@ -36,13 +36,22 @@ SRCE = minishell.c\
 
 OBJ_DIR = Obj/
 
+OBJ = $(SRCE:.c=.o)
+
 LIBFT_DIR = libft
 LIBFT_LINK = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_LINK)
-	@cc $(FLAGS) $(SRCE) -I./  -L./ -lminishell -o $(NAME)
+$(NAME): $(OBJ)
+	@make -C $(LIBFT_DIR)
+	@cp $(LIBFT_LINK) $(LIBMI)
+	@ar rcs $(LIBMI) *.o
+	@echo " "
+	@echo " Make libminishell.a "
+	@echo " "
+	@cc $(FLAGS) $(OBJ) -I./  -L./ -lminishell -o $(NAME)
+#	@mv *.o $(OBJ_DIR)
 	@echo "  ●   ●"
 	@echo "   █   █"
 	@echo "    █   █"
@@ -60,23 +69,24 @@ $(NAME): $(LIBFT_LINK)
 	@echo " "
 	
 	
-$(LIBFT_LINK):
-	@make -C $(LIBFT_DIR)
-	@cp $(LIBFT_LINK) $(LIBMI)
-	@mkdir -p $(OBJ_DIR)
-	@cc $(FLAGS) -c $(SRCE) -I./
-	@ar rcs $(LIBMI) *.o
-	@mv *.o $(OBJ_DIR)
-	@echo " "
-	@echo " Make libminishell.a "
-	@echo " "
+#$(LIBFT_LINK): $(OBJ)
+#	@make -C $(LIBFT_DIR)
+#	@cp $(LIBFT_LINK) $(LIBMI)
+#	@mkdir -p $(OBJ_DIR)
+##	@cc $(FLAGS) -c $(OBJ) -I./
+#	@ar rcs $(LIBMI) *.o
+##	@mv *.o $(OBJ_DIR)
+#	@echo " "
+#	@echo " Make libminishell.a "
+#	@echo " "
 	
 bonus:
 	@echo "Hello Bonus"
 	
 clean:
 	make clean -C $(LIBFT_DIR)
-	@rm -rf $(OBJ_DIR)
+#	@rm -rf $(OBJ_DIR)
+	@rm -f *.o
 	@echo " "
 	@echo "* clean compleate "
 	@echo " "
