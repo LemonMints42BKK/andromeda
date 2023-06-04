@@ -1,1 +1,0 @@
-cc readlnsample2.c -lreadline -o ex2
