@@ -14,6 +14,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+//add code
 // size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 // char	*andro_fgets(char *buffer, int size, FILE *stream)
