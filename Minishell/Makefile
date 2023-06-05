@@ -73,15 +73,16 @@ $(NAME): $(OBJ)
 	@echo "⠀⠀⠙⢷⡶⠛⠳⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣴⣾⠿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠘⣧⡀⣀⣿⠦⣤⣤⣤⣤⣤⣤⠤⠶⠶⠞⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "⠀ "
 
-$(LIBFT_LINK): $(OBJ)
-	@make -C $(LIBFT_DIR)
-	@cp $(LIBFT_LINK) $(LIBMI)
-	@mkdir -p $(OBJ_DIR)
-	@cc $(FLAGS) -c $(OBJ) -I./
-	@ar rcs $(LIBMI) *.o
-	@mv *.o $(OBJ_DIR)
+	@echo " "
+		
+#$(LIBFT_LINK): $(OBJ)
+#	@make -C $(LIBFT_DIR)
+#	@cp $(LIBFT_LINK) $(LIBMI)
+#	@mkdir -p $(OBJ_DIR)
+##	@cc $(FLAGS) -c $(OBJ) -I./
+#	@ar rcs $(LIBMI) *.o
+##	@mv *.o $(OBJ_DIR)
 #	@echo " "
 #	@echo " Make libminishell.a "
 #	@echo " "
