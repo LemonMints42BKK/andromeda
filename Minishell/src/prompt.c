@@ -11,20 +11,47 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 #define HISTORY_FILE ".andro_history"
+
+static void   my_write_history(char *line)
+{
+    int fd;
+
+    fd = open(HISTORY_FILE, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
+    printf("%d \n",fd);
+    if (fd == -1)
+    {
+        printf("Error : history file\n");
+        return ;
+    }
+    ft_putstr_fd(line, fd);
+    write(fd, "\n", 1);
+    
+    if (close(fd) == -1)
+    {
+         printf("Error : close history file\n");
+        return ;
+    }    
+}
 
 char	*myfgets(char *buffer, int size, FILE *stream)
 {
 	char	*line;
 
-	read_history(HISTORY_FILE);//
+//	read_history(HISTORY_FILE);//
 	line = readline ("Andromeda$ ");
 	if (line && *line)
 	{
 		ft_strlcpy(buffer, line, size);
-		add_history(line);
-		write_history(HISTORY_FILE);//
-	}
+      //  rl_clear_history();	
+        add_history(line);
+  	  // write_history(HISTORY_FILE);//
+         my_write_history(line);
+        
+      //  rl_replace_line(line, 1);
+       // rl_redisplay();
+	} 
 	free(line);
 	// if (stream != NULL)
 	// {
@@ -34,34 +61,4 @@ char	*myfgets(char *buffer, int size, FILE *stream)
 	return (buffer);
 }
 
-// char    *myfgets(char *str, int n, FILE *stream)
-// {
-//     int c;
-//     char *p = str;
 
-//     /* Make sure we have a valid FILE pointer */
-//     if (stream == NULL) {
-//         return NULL;
-//     }
-
-//     /* Read up to n-1 characters from the stream */
-//     while (--n > 0 && (c = getc(stream)) != EOF) {
-//         *p++ = (char) c;
-
-//         /* If we encounter a newline character, stop reading */
-//         if (c == '\n') {
-//             break;
-//         }
-//     }
-
-//     /* Terminate the string with a null character */
-//     *p = '\0';
-
-//     /* If no characters were read, return NULL */
-//     if (p == str) {
-//         return NULL;
-//     }
-
-//     /* Otherwise, return the string */
-//     return str;
-// }
