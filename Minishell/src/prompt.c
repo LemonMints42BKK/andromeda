@@ -11,18 +11,21 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#define HISTORY_FILE ".andro_history"
 
 char	*myfgets(char *buffer, int size, FILE *stream)
 {
-	char	*prompt;
+	char	*line;
 
-	prompt = readline ("Andromeda$ ");
-	if (prompt != NULL)
+	read_history(HISTORY_FILE);//
+	line = readline ("Andromeda$ ");
+	if (line && *line)
 	{
-		ft_strlcpy(buffer, prompt, size);
-	// 	add_history(prompt);
+		ft_strlcpy(buffer, line, size);
+		add_history(line);
+		write_history(HISTORY_FILE);//
 	}
-	// free(prompt);
+	free(line);
 	// if (stream != NULL)
 	// {
 	// 	ft_strlcpy(buffer, stream, size);
