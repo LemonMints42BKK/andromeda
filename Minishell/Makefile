@@ -10,21 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror
 
 ## check leak CFLAGS = -Wall  -Wextra -Werror -g -fsanitize=address
 
-NAME = minishell
+NAME	=	minishell
 
-LIBMI = libminishell.a
+LIBMI	=	libminishell.a
 
-SRCE = minishell.c\
-
+SRCE	=	minishell.c\
+			./src/prompt.c\
 
 #	read_input_0.c\
 #	read_input_1.c\
 #	history_0.c\
-#	history_1.c\ 
+#	history_1.c\
 #       Tokenize_0.c\
 #	Tokenize_1.c\
 #       executables_0.c\
@@ -32,9 +32,9 @@ SRCE = minishell.c\
 #	pipe_operators_0.c\
 #	pipe_operation_0.c\
 #       Environment_0.c\
-#	Environment10.c\	
+#	Environment10.c\
 
-OBJ_DIR = Obj/
+OBJ_DIR = obj/
 
 OBJ = $(SRCE:.c=.o)
 
@@ -47,10 +47,11 @@ $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_LINK) $(LIBMI)
 	@ar rcs $(LIBMI) *.o
+
 	@echo " "
 	@echo " Make libminishell.a "
 	@echo " "
-	@cc $(FLAGS) $(OBJ) -I./  -L./ -lminishell -o $(NAME)
+	@cc $(FLAGS) $(OBJ) -I./  -L./ -lminishell -lreadline -o $(NAME)
 #	@mv *.o $(OBJ_DIR)
 	@echo " "
 	@echo "    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
@@ -73,21 +74,21 @@ $(NAME): $(OBJ)
 	@echo "⠀⠀⠘⣧⡀⣀⣿⠦⣤⣤⣤⣤⣤⣤⠤⠶⠶⠞⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀ "
-		
-#$(LIBFT_LINK): $(OBJ)
-#	@make -C $(LIBFT_DIR)
-#	@cp $(LIBFT_LINK) $(LIBMI)
-#	@mkdir -p $(OBJ_DIR)
-##	@cc $(FLAGS) -c $(OBJ) -I./
-#	@ar rcs $(LIBMI) *.o
-##	@mv *.o $(OBJ_DIR)
+
+$(LIBFT_LINK): $(OBJ)
+	@make -C $(LIBFT_DIR)
+	@cp $(LIBFT_LINK) $(LIBMI)
+	@mkdir -p $(OBJ_DIR)
+	@cc $(FLAGS) -c $(OBJ) -I./
+	@ar rcs $(LIBMI) *.o
+	@mv *.o $(OBJ_DIR)
 #	@echo " "
 #	@echo " Make libminishell.a "
 #	@echo " "
-	
+
 bonus:
 	@echo "Hello Bonus"
-	
+
 clean:
 	make clean -C $(LIBFT_DIR)
 #	@rm -rf $(OBJ_DIR)
