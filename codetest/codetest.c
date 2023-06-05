@@ -110,8 +110,8 @@ void expand_environment_variables(char* token) {
     for (size_t i = 0; i < token_len; i++) {
         if (token[i] == '$') {
             if (token[i + 1] == '?') {
-              //  asprintf(&env_variable, "%d", WEXITSTATUS(set_last_command_exit_status()));
-                 printf("xx\n");
+                asprintf(&env_variable, "%d", WEXITSTATUS(set_last_command_exit_status()));
+                // printf("xx\n");
                 expanded_len += strlen(env_variable);
                 i++; // Skip the next character since it has been processed
             } else if (isalnum(token[i + 1]) || token[i + 1] == '_') {
@@ -128,8 +128,8 @@ void expand_environment_variables(char* token) {
                     char* value = getenv(env_var);
                     if (value != NULL) {
                         expanded_len += strlen(value);
-                      //  asprintf(&expanded_token, "%s%s%s", expanded_token, value, end);
-                      printf("xx\n");
+                          asprintf(&expanded_token, "%s%s%s", expanded_token, value, end);
+                      //printf("xx\n");
                     }
                 }
             } else {
