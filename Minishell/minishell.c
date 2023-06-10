@@ -21,7 +21,8 @@ int main(void)
 
     while (1)
     {
-        myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
+        if (!myfgets(cmd, MAX_CMD_LENGTH, stdout))  // Read user input
+            perror("Error:");
         // cmd[strcspn(cmd, "\n")] = '\0';  // Remove trailing newline
 
         // // Tokenize input into arguments

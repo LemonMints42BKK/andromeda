@@ -34,28 +34,43 @@ static void   my_write_history(char *line)
         return ;
     }
 }
+//not finished yet
+int mygetc(FILE *stream)
+{
+    unsigned char   c;
+    if (stream == NULL)
+        return(EOF);
+}
 
 char	*myfgets(char *buffer, int size, FILE *stream)
 {
 	char	*line;
+    int     c;
 
-
-	line = readline ("Andromeda$ ");
-	if (line && *line)
+    line = buffer;
+    if (stream == NULL)
+        return(NULL);
+    if (stream->_fileno == 0)
+        line = readline ("Andromeda$ ");
+    else if (stream->_fileno > 0)
+    {
+        c = mygetc(stream);
+        while (--size > 0 && c != '\0')
+        {
+            *line++ = (char) c;
+            if (c == '\n')
+                break;
+            c = mygetc(stream);
+        }
+        *line = '\0';
+    }
+	if (line && (*line != "\0"))
 	{
 		ft_strlcpy(buffer, line, size);
-    
         add_history(line);
-  	 
         my_write_history(line);
-      
 	}
 	free(line);
-	// if (stream != NULL)
-	// {
-	// 	ft_strlcpy(buffer, stream, size);
-	// 	add_history(stream);
-	// }
 	return (buffer);
 }
 
