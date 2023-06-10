@@ -1,5 +1,0 @@
-Minishell
-README.md
-abc.txt
-codetest
-qqq.txt
