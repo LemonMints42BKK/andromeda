@@ -39,17 +39,16 @@ char	*myfgets(char *buffer, int size, FILE *stream)
 {
 	char	*line;
 
-//	read_history(HISTORY_FILE);//
+
 	line = readline ("Andromeda$ ");
 	if (line && *line)
 	{
 		ft_strlcpy(buffer, line, size);
-      //  rl_clear_history();
+    
         add_history(line);
-  	  // write_history(HISTORY_FILE);//
+  	 
         my_write_history(line);
-      //  rl_replace_line(line, 1);
-       // rl_redisplay();
+      
 	}
 	free(line);
 	// if (stream != NULL)
