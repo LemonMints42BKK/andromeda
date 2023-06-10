@@ -75,7 +75,7 @@ $(NAME): $(OBJ)
 	@echo "⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 
 	@echo " "
-		
+
 #$(LIBFT_LINK): $(OBJ)
 #	@make -C $(LIBFT_DIR)
 #	@cp $(LIBFT_LINK) $(LIBMI)
@@ -93,7 +93,7 @@ bonus:
 clean:
 	make clean -C $(LIBFT_DIR)
 #	@rm -rf $(OBJ_DIR)
-	@rm -f *.o
+	@rm -f *.o src/*.o
 	@echo " "
 	@echo "* clean compleate "
 	@echo " "
