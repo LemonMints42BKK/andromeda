@@ -32,6 +32,7 @@
 #define MAX_ARGS 64
 
 /*prompt*/
+void   my_read_history(void);
 char *myfgets(char *str, int n, FILE *stream);
 void execute_command(char** args);
 void execute_external_command(char** args);

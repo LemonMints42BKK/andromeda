@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/11 10:15:01 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:54:01 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,27 @@
 
 #define HISTORY_FILE ".andro_history"
 
-
-/*
-static void   my_read_history(void)
+void   my_read_history(void)
 {
-    int fd;
+   int  fd;
     char *ch;
-    int     buffer_size;
-
-    buffer_size = BUFFER_SIZE;
-    printf("B S = %d\n",buffer_size);
-    
-    fd = open(HISTORY_FILE, O_RDWR);
+   
+    fd = open(HISTORY_FILE, O_RDWR | O_CREAT);
     if (fd == -1)
     {
         printf("Error : history file\n");
         return ;
     }
-    ch = get_next_line(fd);
-    printf("\n%s\n",ch);
-    add_history(ch);
-    while (ch)
-    {
-        ch++;
+      while ((ch = get_next_line(fd)) != NULL)
+      {
+         ch = ft_strtrim(ch, "\n");
          add_history(ch);
-        ch = get_next_line(fd);
+         free(ch);
+      }
+      close(fd);
    
-  }
-    close (fd);
-    
-    
+      
 }
-*/
-
 
 static void   my_write_history(char *line)
 {
@@ -79,8 +67,7 @@ char	*myfgets(char *buffer, int size, FILE *stream)
 	if (line && *line)
 	{
 		ft_strlcpy(buffer, line, size);
-    
-       	 
+          	 
         my_write_history(line);
         add_history(line);
       //  read_history(HISTORY_FILE);

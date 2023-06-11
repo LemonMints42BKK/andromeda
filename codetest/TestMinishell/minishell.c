@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 04:36:24 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/11 04:36:46 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:46:59 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(void)
     char *token;
     int status;
 
+    my_read_history();
     while (1)
     {
         myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
