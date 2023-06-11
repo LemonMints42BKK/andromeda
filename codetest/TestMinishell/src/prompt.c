@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g65420029 <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/05 11:37:29 by g65420029        ###   ########.fr       */
+/*   Updated: 2023/06/11 10:15:01 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,40 @@
 #include "../minishell.h"
 
 #define HISTORY_FILE ".andro_history"
+
+
+/*
+static void   my_read_history(void)
+{
+    int fd;
+    char *ch;
+    int     buffer_size;
+
+    buffer_size = BUFFER_SIZE;
+    printf("B S = %d\n",buffer_size);
+    
+    fd = open(HISTORY_FILE, O_RDWR);
+    if (fd == -1)
+    {
+        printf("Error : history file\n");
+        return ;
+    }
+    ch = get_next_line(fd);
+    printf("\n%s\n",ch);
+    add_history(ch);
+    while (ch)
+    {
+        ch++;
+         add_history(ch);
+        ch = get_next_line(fd);
+   
+  }
+    close (fd);
+    
+    
+}
+*/
+
 
 static void   my_write_history(char *line)
 {
@@ -41,13 +75,16 @@ char	*myfgets(char *buffer, int size, FILE *stream)
 
 
 	line = readline ("Andromeda$ ");
+     my_read_history();
 	if (line && *line)
 	{
 		ft_strlcpy(buffer, line, size);
     
-        add_history(line);
-  	 
+       	 
         my_write_history(line);
+        add_history(line);
+      //  read_history(HISTORY_FILE);
+     
       
 	}
 	free(line);
