@@ -35,13 +35,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 int main(int argc, char **argv)
 {
     t_list *head;
-    // t_list *ptr;
+    t_list *ptr;
 
     head = init_env(argc, argv);
-    // ptr = head;
-    // while (ptr->next != NULL)
-    // {
-    //     printf("%s=%s\n", ptr->name, ptr->var);
-    //     ptr = ptr->next;
-    // }
+    ptr = head;
+    while (ptr != NULL)
+    {
+        printf("%s=%s\n", ptr->name, ptr->var);
+        ptr = ptr->next;
+    }
 }

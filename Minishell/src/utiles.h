@@ -1,12 +1,12 @@
 #ifndef UTILES_H
 # define UTILES_H
 
-struct s_list
+typedef struct s_list
 {
     char            *name;
     char            *var;
-    struct s_env    prev;
-    struct s_env    next;
+    struct s_list   *prev;
+    struct s_list   *next;
 } t_list;
 
 #endif
