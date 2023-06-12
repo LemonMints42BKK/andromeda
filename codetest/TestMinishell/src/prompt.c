@@ -33,8 +33,6 @@ void   my_read_history(void)
          free(ch);
       }
       close(fd);
-   
-      
 }
 
 static void   my_write_history(char *line)

@@ -43,12 +43,16 @@ void    name_and_var(char *str, char **name, char **var)
     int     j;
     int     len;
 
+    j = 0;
+    len = ft_strlen(str);
     if (check_valid(str, &j))
     {
+        printf("j = %d\n", j);
+        printf("len = %d\n", len-j);
         *name = (char*)malloc(sizeof(char) * (j + 1));
-        *var = (char*)malloc(sizeof(char) * (len - (j + 2)));
+        *var = (char*)malloc(sizeof(char) * (len - j));
         ft_strlcpy(*name, str, (j + 1));
-        // ft_strlcpy(*var, str + (j + 1), (len - j + 2));
+        ft_strlcpy(*var, str+(j + 1), len - j);
     }
 }
 
