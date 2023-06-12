@@ -21,25 +21,18 @@ static void   my_write_history(char *line)
 
     fd = open(HISTORY_FILE, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
     if (fd == -1)
-    {
-        printf("Error : history file\n");
-        return ;
-    }
-    ft_putstr_fd(line, fd);
+        ft_putstr_fd("Error : To open history file\n", 2);
     write(fd, "\n", 1);
-
     if (close(fd) == -1)
-    {
-         printf("Error : close history file\n");
-        return ;
-    }
+        ft_putstr_fd("Error : To close history file\n", 2);    
 }
-//not finished yet
+
 int mygetc(FILE *stream)
 {
     unsigned char   c;
     if (stream == NULL)
         return(EOF);
+    return (c);
 }
 
 char	*myfgets(char *buffer, int size, FILE *stream)
@@ -64,13 +57,14 @@ char	*myfgets(char *buffer, int size, FILE *stream)
         }
         *line = '\0';
     }
-	if (line && (*line != "\0"))
+	if (line && (ft_strncmp(line, "", 1) != 0))
 	{
 		ft_strlcpy(buffer, line, size);
         add_history(line);
         my_write_history(line);
 	}
-	free(line);
+    if (stream->_fileno == 0)
+	    free(line);
 	return (buffer);
 }
 
