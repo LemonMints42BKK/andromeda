@@ -30,10 +30,10 @@
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_CMD_LENGTH 100
 #define MAX_ARGS 64
+#define HISTORY_FILE ".andro_history"
 
 /*prompt*/
-void   my_read_history(void);
-char *myfgets(char *str, int n, FILE *stream);
+char            *myfgets(char *str, int n, FILE *stream);
 void execute_command(char** args);
 void execute_external_command(char** args);
 void handle_redirections(char** args);
