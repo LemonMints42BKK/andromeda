@@ -1,9 +1,62 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-int main() {
-    char* const argv[] = {A, B, NULL};
-    execve(P, argv, NULL);
-    printf("This line won't be executed\n");
-    return 0;
+void main() { 
+    int ret = fork();
+    const char *argv[3]; 
+    if (ret == 0)
+    {
+        // Child process. 
+        // Execute “ls –al” 
+        argv[0]="ls"; 
+        argv[1]="-al"; 
+        argv[2] = NULL; 
+        execve("/bin/ls", argv, NULL); 
+        // There was an error 
+        perror("execve"); 
+        _exit(1); 
+    }
+    else if (ret < 0)
+    {
+        // There was an error in fork 
+        perror("fork");
+        exit(2);
+    }
+    else
+    {
+        // This is the parent process 
+        // ret is the pid of the child 
+        // Wait until the child exits 
+        waitpid(ret, NULL, 0);
+    } // end if
 }
+// void main() { 
+//   // Create a new process 
+//   int ret = fork();
+//   if (ret == 0) { 
+//     // Child process. 
+//     // Execute “ls –al” 
+//     const char *argv[3]; 
+//     argv[0]=“ls”; 
+//     argv[1]=“­al”; 
+//     argv[2] = NULL; 
+//     execvp(argv[0], argv); 
+//     // There was an error 
+//     perror(“execvp”); 
+//     _exit(1); 
+//   } 
+//   else if (ret < 0) { 
+//     // There was an error in fork 
+//     perror(“fork”);
+//     exit(2);
+//   } 
+//   else { 
+//     // This is the parent process 
+//     // ret is the pid of the child 
+//     // Wait until the child exits 
+//     waitpid(ret, NULL);
+//   } // end if 
+// }// end main 
