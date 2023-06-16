@@ -19,8 +19,9 @@ NAME	=	minishell
 LIBMI	=	libminishell.a
 
 SRCE	=	minishell.c\
+			./src/history.c\
 			./src/prompt.c\
-			./src/tokenize.c\
+			
 #	read_input_0.c\
 #	read_input_1.c\
 #	history_0.c\

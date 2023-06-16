@@ -30,9 +30,26 @@
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_CMD_LENGTH 100
 #define MAX_ARGS 64
+#define HISTORY_FILE ".andro_history"
+
+typedef struct s_env
+{
+    char	cmd[MAX_COMMAND_LENGTH];
+    t_list	**args;
+    char    *token;
+    int     status;
+}				t_env;
 
 /*prompt*/
 char *myfgets(char *str, int n, FILE *stream);
+/*history*/
+void   andro_wr_history(char *line);
+void   andro_rd_history(void);
+/*environment*/
+t_list  *init_env(int argc, char **argv);
+void    push(t_list **head, char **name, char **var);
+
+/*builtins*/
 void execute_command(char** args);
 void execute_external_command(char** args);
 void handle_redirections(char** args);

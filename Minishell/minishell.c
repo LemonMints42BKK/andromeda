@@ -14,17 +14,16 @@
 
 int main(void)
 {
-    char cmd[MAX_CMD_LENGTH];
-    char *args[MAX_CMD_LENGTH];
-    char *token;
-    int status;
+    t_env *path;
 
+    andro_rd_history();
+    andro_get_env(path);
     while (1)
     {
-        if (!myfgets(cmd, MAX_CMD_LENGTH, stdin))  // Read user input
-            perror("Error:");
-        if (ft_strchr(cmd, '\n'))  // Remove trailing newline
-            *ft_strchr(cmd, '\n') = '\0';
+        if (!myfgets(path->cmd, MAX_CMD_LENGTH, stdin))  // Read user input
+            perror("Error");
+        if (ft_strchr(path->cmd, '\n'))  // Remove trailing newline
+            *ft_strchr(path->cmd, '\n') = '\0';
         // Tokenize input into arguments
         
             // int arg_index = 0;
