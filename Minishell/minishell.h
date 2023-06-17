@@ -32,7 +32,7 @@
 #define MAX_ARGS 64
 #define HISTORY_FILE ".andro_history"
 
-typedef struct s_env
+typedef struct s_data
 {
     char	cmd[MAX_COMMAND_LENGTH];
     t_list	**args;
@@ -41,14 +41,17 @@ typedef struct s_env
 }				t_data;
 
 /*prompt*/
-char *myfgets(char *str, int n, FILE *stream);
+char    *myfgets(char *str, int n, FILE *stream);
 /*history*/
 void   andro_wr_history(char *line);
 void   andro_rd_history(void);
 /*environment*/
+int    get_env(t_data *path);
 t_list  *init_env(int argc, char **argv);
 void    push(t_list **head, char **name, char **var);
-
+/*tokenize*/
+int     andro_parsing(t_data *path);
+char    *strtok(char *str, char *delim);
 /*builtins*/
 void execute_command(char** args);
 void execute_external_command(char** args);

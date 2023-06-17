@@ -8,10 +8,8 @@
 
 typedef struct s_list
 {
-    char            *name;
-    char            *var;
-    struct s_list   *prev;
-    struct s_list   *next;
+    char            *key;
+    char            *value;
+    struct s_envlist   *prev;
+    struct s_envlist   *next;
 } t_list;
-
-#endif
