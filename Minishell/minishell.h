@@ -46,12 +46,12 @@ char    *myfgets(char *str, int n, FILE *stream);
 void   andro_wr_history(char *line);
 void   andro_rd_history(void);
 /*environment*/
-int    get_env(t_data *path);
-t_list  *init_env(int argc, char **argv);
-void    push(t_list **head, char **name, char **var);
+//int    get_env(t_data *path);
+/*signal*/
+void    enable_signals(void);
 /*tokenize*/
 int     andro_parsing(t_data *path);
-char    *strtok(char *str, char *delim);
+//char    *strtok(char *str, char *delim);
 /*builtins*/
 void execute_command(char** args);
 void execute_external_command(char** args);

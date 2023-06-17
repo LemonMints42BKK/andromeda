@@ -10,6 +10,8 @@ typedef struct s_list
 {
     char            *key;
     char            *value;
-    struct s_envlist   *prev;
-    struct s_envlist   *next;
+    struct s_list   *prev;
+    struct s_list   *next;
 } t_list;
+
+#endif

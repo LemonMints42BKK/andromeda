@@ -21,7 +21,8 @@ LIBMI	=	libminishell.a
 SRCE	=	minishell.c\
 			./src/history.c\
 			./src/prompt.c\
-			./src/tokenize.c\
+			./src/signal.c\
+			# ./src/tokenize.c\
 			
 #       Tokenize_0.c\
 #	Tokenize_1.c\
