@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   env_getenv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/17 09:56:15 by pnopjira         ###   ########.fr       */
+/*   Created: 2023/06/17 10:09:24 by pnopjira          #+#    #+#             */
+/*   Updated: 2023/06/17 15:29:36 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include "utiles.h"
+#include <string.h>
 
-char	*myfgets(char *buffer, int size, FILE *stream)
+void	get_env(t_envlist **envlist, char **envp)
 {
-	char	*line;
-    int     c;
+	t_envlist	*temp;
+	int		envc;
 
-    line = buffer;
-    if (stream == NULL)
-        return(NULL);
-    if (stream->_fileno == 0)
-        line = readline ("Andromeda$ ");
-	if (line && (ft_strncmp(line, "", 1) != 0))
+	envc = count_env(envp);
+	*envlist = init_env(envc, envp);
+	temp = *envlist;
+	while (temp)
 	{
-		ft_strlcpy(buffer, line, size);
-        add_history(line);
-        andro_wr_history(line);
+		printf("%s=%s\n", temp->key, temp->value);
+		temp = temp->next;
 	}
-    if (stream->_fileno == 0)
-	    free(line);
-	return (buffer);
+	return (EXIT_SUCCESS);
 }
 
+int	count_env(char **envp)
+{
+	int i;
 
+	i = 0;
+	while (envp[i])
+		i++;
+	return (i);
+}

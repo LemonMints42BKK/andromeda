@@ -22,8 +22,11 @@ SRCE	=	minishell.c\
 			./src/history.c\
 			./src/prompt.c\
 			./src/signal.c\
-			# ./src/tokenize.c\
-			
+			./src/env_getenv.c\
+			./src/env_initenv.c\
+			# ./src/environment_var.c
+
+# ./src/tokenize.c\
 #       Tokenize_0.c\
 #	Tokenize_1.c\
 #       executables_0.c\

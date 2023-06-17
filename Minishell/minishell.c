@@ -11,31 +11,30 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "./src/utiles.h"
 
-void    set_zero(t_data *path);
-void    free_all(t_data *path);
-
-int     main(void)
+int     main(int argc, char **argv, char **envp)
 {
-    t_data *path;
+    char	cmd[MAX_COMMAND_LENGTH];
+    t_envlist   *envlist;
 
-    enable_signals();
-    path = (t_data *)malloc(sizeof(t_data));
-    if (!path)
-    {
-        perror("Error: malloc failed");
-        return (EXIT_FAILURE);
-    }
-    set_zero(path);
-    andro_rd_history();
+    get_env(&envlist, envp);
+    if (envlist == NULL)
+        return (perror("Error"), EXIT_FAILURE);
+    //enable_signals();
+    // printf ("#####################\n");
+    // get_env();
+    // andro_rd_history();
     //get_env(path);
-    while (1)
-    {
-        if (!myfgets(path->cmd, MAX_CMD_LENGTH, stdin))  // Read user input
-            perror("Error");
-        if (ft_strchr(path->cmd, '\n'))  // Remove trailing newline
-            *ft_strchr(path->cmd, '\n') = '\0';
-        andro_parsing(path);//Tokenize input into arguments
+    // while (1)
+    // {
+    //     // if (!myfgets(path->cmd, MAX_CMD_LENGTH, stdin))  // Read user input
+    //     if (!myfgets(cmd, MAX_CMD_LENGTH, stdin))
+    //         perror("Error");
+    //     // if (ft_strchr(path->cmd, '\n'))  // Remove trailing newline
+    //     //     *ft_strchr(path->cmd, '\n') = '\0';
+    //     if (ft_strchr(cmd, '\n'))  // Remove trailing newline
+    //         *ft_strchr(cmd, '\n') = '\0';
         // path->args[arg_index] = NULL;
         // if (strcmp(path->args[0], "exit") == 0) // Exit shell if "exit" command is entered
         //     exit(0);
@@ -58,27 +57,11 @@ int     main(void)
             //         exit(1);
             //     }
             // }
+    //}
+    while (envlist)
+    {
+        free_t_envlist(envlist);
+        envlist = envlist->next;
     }
-    free_all(path);
     return (EXIT_SUCCESS);
-}
-
-void    set_zero(t_data *path)
-{
-    path->cmd[0] = '\0';
-    path->args = NULL;
-    path->token = NULL;
-    path->status = 0;
-}
-
-void    free_all(t_data *path)
-{
-    int i;
-
-    i = 0;
-    while (path->args[i])
-        free(path->args[i++]);
-    free(path->args);
-    free(path->token);
-    free(path);
 }
