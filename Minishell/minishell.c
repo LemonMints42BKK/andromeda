@@ -14,7 +14,7 @@
 
 int main(void)
 {
-    t_env *path;
+    t_data *path;
 
     andro_rd_history();
     andro_get_env(path);

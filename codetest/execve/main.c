@@ -33,30 +33,3 @@ void main() {
         waitpid(ret, NULL, 0);
     } // end if
 }
-// void main() { 
-//   // Create a new process 
-//   int ret = fork();
-//   if (ret == 0) { 
-//     // Child process. 
-//     // Execute “ls –al” 
-//     const char *argv[3]; 
-//     argv[0]=“ls”; 
-//     argv[1]=“­al”; 
-//     argv[2] = NULL; 
-//     execvp(argv[0], argv); 
-//     // There was an error 
-//     perror(“execvp”); 
-//     _exit(1); 
-//   } 
-//   else if (ret < 0) { 
-//     // There was an error in fork 
-//     perror(“fork”);
-//     exit(2);
-//   } 
-//   else { 
-//     // This is the parent process 
-//     // ret is the pid of the child 
-//     // Wait until the child exits 
-//     waitpid(ret, NULL);
-//   } // end if 
-// }// end main 

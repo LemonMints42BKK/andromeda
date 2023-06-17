@@ -38,7 +38,7 @@ typedef struct s_env
     t_list	**args;
     char    *token;
     int     status;
-}				t_env;
+}				t_data;
 
 /*prompt*/
 char *myfgets(char *str, int n, FILE *stream);
