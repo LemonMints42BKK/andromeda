@@ -35,7 +35,8 @@
 
 typedef struct s_data
 {
-
+	char	cmd[MAX_COMMAND_LENGTH];
+    t_envlist   *envlist;
 }               t_data;
 
 /*prompt*/

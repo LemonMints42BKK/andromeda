@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:55:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/18 04:50:13 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/18 06:18:45 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void    pop(t_envlist **head, char **key)
 void    push(t_envlist **head, char **key, char **value)
 {
     t_envlist	*temp;
+    t_envlist	*ptr;
 
+    ptr = *head;
 	temp = (t_envlist *)malloc(sizeof(t_envlist));
 	if (!temp)
 		temp = NULL;
@@ -68,12 +70,22 @@ void    push(t_envlist **head, char **key, char **value)
     temp->value = *value;
 	temp->prev = NULL;
 	temp->next = NULL;
-	if (*head != NULL)
-	{
-		temp->next = *head;
-        (*head)->prev = temp;
-	}
-    *head = temp;
+    if (ptr != NULL)
+    {
+        while(ptr->next != NULL)
+            ptr = ptr->next;
+        ptr->next = temp;
+        temp->prev = ptr;
+    }
+    else
+        *head = temp;
+	// if (*head!= NULL)
+	// {
+	// 	temp->next = *head;
+    //     (*head)->prev = temp;
+	// }
+    // *head = temp;
+    ptr = NULL;
 	temp = NULL;
 }
 
