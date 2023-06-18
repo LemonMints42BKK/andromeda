@@ -16,15 +16,17 @@ void   andro_rd_history(void)
 {
     int  fd;
     char *ch;
+    char *str;
    
     fd = open(HISTORY_FILE, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
     if (fd == -1)
         ft_putstr_fd("Error : to open history file\n", 2);
     while ((ch = get_next_line(fd)) != NULL)
     {
-        ch = ft_strtrim(ch, "\n");
-        add_history(ch);
-        free(ch);
+        str = ft_strtrim(ch, "\n");
+        free (ch);
+        add_history(str);
+        free(str);
     }
     if(close(fd) == -1)
         ft_putstr_fd("Error : to close history file\n", 2);
