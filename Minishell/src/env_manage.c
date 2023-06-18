@@ -6,16 +6,24 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:55:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/18 06:18:45 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/18 07:21:40 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "utiles.h"
 
-void    pop(t_envlist **head, char **key);
-void    is_empty(t_envlist **head, char **key, char **value);
+void    pop(t_envlist **head, char *key);
+int    is_empty(t_envlist **head);
 void    free_t_envlist(t_envlist **temp);
+
+int	is_empty(t_envlist **head)
+{
+	if (*head == NULL)
+		return (1);
+	else
+		return (0);
+}
 
 void  free_t_envlist(t_envlist **temp)
 {
@@ -25,36 +33,33 @@ void  free_t_envlist(t_envlist **temp)
     (*temp) = NULL;
 }
 
-void    pop(t_envlist **head, char **key)
+void    pop(t_envlist **head, char *key)
 {
     t_envlist	*temp;
     t_envlist  *ptr1;
 
-    if (*head == NULL)
-        return ;
     temp = *head;
-    while (temp->key != *key)
-        temp = temp->next;
-	if (temp->prev == NULL)
+    if (temp != NULL)
     {
-        *head = temp->next;
-        free_t_envlist(&temp);
-    }
-    else
-    {
-        ptr1 = temp->prev;
-		if (temp->next == NULL)
-			ptr1->next = NULL;
-		else
+        while (ft_strncmp(temp->key, key, ft_strlen(key)) != 0)
+            temp = temp->next;
+        if (temp == NULL)
+            return ;
+        if (temp->prev == NULL)
+            *head = temp->next;
+        else
         {
-			ptr1->next = temp->next;
-        	temp->next->prev = ptr1;
-		}
+            if (temp->next == NULL)
+                temp->prev->next = NULL;
+            else
+            {
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+            }
+        }
         free_t_envlist(&temp);
         ptr1 = NULL;
     }
-    if (*head)
-        (*head)->prev = NULL;
 }
 
 void    push(t_envlist **head, char **key, char **value)

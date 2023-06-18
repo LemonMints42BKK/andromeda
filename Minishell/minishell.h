@@ -50,7 +50,7 @@ void		free_t_envlist(t_envlist **temp);
 t_envlist  *init_env(int envc, char **envp);
 int			count_env(char **envp);
 void		push(t_envlist **head, char **key, char **value);
-void		pop(t_envlist **head, char **key);
+void		pop(t_envlist **head, char *key);
 /*signal*/
 void	enable_signals(void);
 /*tokenize*/

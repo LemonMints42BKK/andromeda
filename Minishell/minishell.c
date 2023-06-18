@@ -18,14 +18,11 @@ int     main(int argc, char **argv, char **envp)
     char	cmd[MAX_COMMAND_LENGTH];
     t_envlist   *envlist;
 
-    // path->envlist = NULL;
-    // get_env(&path->envlist, envp);
     get_env(&envlist, envp);
-    //if (path->envlist == NULL)
-    //     return (EXIT_FAILURE);
+    if (envlist == NULL)
+        return (EXIT_FAILURE);
     //enable_signals();
     andro_rd_history();
-    // get_env(path);
     while (1)
     {
         // if (!myfgets(path->cmd, MAX_CMD_LENGTH, stdin))  // Read user input
