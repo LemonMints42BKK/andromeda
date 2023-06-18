@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_initenv.c                                      :+:      :+:    :+:   */
+/*   env_manage.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:55:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/17 15:44:28 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/18 04:50:13 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void    pop(t_envlist **head, char **key);
 void    is_empty(t_envlist **head, char **key, char **value);
+void    free_t_envlist(t_envlist **temp);
 
 void  free_t_envlist(t_envlist **temp)
 {
@@ -84,32 +85,35 @@ int    check_valid(char *str, int *j)
     *j = 0;
     while (str[*j] != '\0')
     {
-        if (str[*j] == '=')
-            valid_str = 1;
         (*j)++;
+    if (str[*j] == '=')
+    {
+        valid_str = 1;
+        break ;
+    }
     }
     return (valid_str);
 }
 
-void    key_and_value(char *str, char **key, char **value)
+int    key_and_value(char *str, char **key, char **value)
 {
     int     j;
     int     len;
 
     j = 0;
     len = ft_strlen(str);
-    printf("len = %d\n", len);
     if (check_valid(str, &j))
     {
-        *key = (char*)malloc(sizeof(char) * j);
+        *key = (char*)malloc(sizeof(char) * (j + 1));
         if (!*key)
-            return ;
-        *value = (char*)malloc(sizeof(char) * (len - j + 1));
+            return (perror("error"), EXIT_FAILURE);
+        *value = (char*)malloc(sizeof(char) * (len - j + 2));
         if (!*value)
-            return ;
-        ft_strlcpy(*key, str, j);
-        ft_strlcpy(*value, (str + j), (len - j + 1));
+            return (perror("error"), EXIT_FAILURE);
+        ft_strlcpy(*key, str, j + 1);
+        ft_strlcpy(*value, (str + j + 1), (len - j + 2));
     }
+    return (EXIT_SUCCESS);
 }
 
 t_envlist  *init_env(int envc, char **envp)
@@ -123,7 +127,8 @@ t_envlist  *init_env(int envc, char **envp)
     head = NULL;
     while(i < envc)
     {
-        key_and_value(envp[i], &key, &value);
+        if (key_and_value(envp[i], &key, &value))
+            return (NULL);
         if (key || value)
         {
             push(&head, &key, &value);

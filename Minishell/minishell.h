@@ -39,15 +39,17 @@ typedef struct s_data
 }               t_data;
 
 /*prompt*/
-char	*myfgets(char *str, int n, FILE *stream);
+char		*myfgets(char *str, int n, FILE *stream);
 /*history*/
-void	andro_wr_history(char *line);
-void	andro_rd_history(void);
+void		andro_wr_history(char *line);
+void		andro_rd_history(void);
 /*environment*/
-void	get_env(t_envlist **envlist, char **envp);
+void		get_env(t_envlist **envlist, char **envp);
+void		free_t_envlist(t_envlist **temp);
 t_envlist  *init_env(int envc, char **envp);
-int		count_env(char **envp);
-void  free_t_envlist(t_envlist **temp);
+int			count_env(char **envp);
+void		push(t_envlist **head, char **key, char **value);
+void		pop(t_envlist **head, char **key);
 /*signal*/
 void	enable_signals(void);
 /*tokenize*/

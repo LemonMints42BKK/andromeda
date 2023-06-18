@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 10:09:24 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/17 15:29:36 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/18 05:08:24 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,21 @@
 
 void	get_env(t_envlist **envlist, char **envp)
 {
-	t_envlist	*temp;
 	int		envc;
+	t_envlist	*temp;
 
 	envc = count_env(envp);
 	*envlist = init_env(envc, envp);
 	temp = *envlist;
-	while (temp)
+	while (temp->next != NULL)
 	{
-		printf("%s=%s\n", temp->key, temp->value);
-		temp = temp->next;
+		if (ft_strncmp(temp->key, "PWD", 3) == 0)
+		{	printf("PWD=%s\n", temp->value);
+			break;}
+		else
+			temp = temp->next;
 	}
-	return (EXIT_SUCCESS);
+	return ;
 }
 
 int	count_env(char **envp)

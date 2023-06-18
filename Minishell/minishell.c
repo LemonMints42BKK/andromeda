@@ -20,19 +20,17 @@ int     main(int argc, char **argv, char **envp)
 
     get_env(&envlist, envp);
     if (envlist == NULL)
-        return (perror("Error"), EXIT_FAILURE);
+        return (EXIT_FAILURE);
     //enable_signals();
-    // printf ("#####################\n");
-    // get_env();
-    // andro_rd_history();
-    //get_env(path);
-    // while (1)
-    // {
-    //     // if (!myfgets(path->cmd, MAX_CMD_LENGTH, stdin))  // Read user input
-    //     if (!myfgets(cmd, MAX_CMD_LENGTH, stdin))
-    //         perror("Error");
-    //     // if (ft_strchr(path->cmd, '\n'))  // Remove trailing newline
-    //     //     *ft_strchr(path->cmd, '\n') = '\0';
+    andro_rd_history();
+    // get_env(path);
+    while (1)
+    {
+        // if (!myfgets(path->cmd, MAX_CMD_LENGTH, stdin))  // Read user input
+        if (!myfgets(cmd, MAX_CMD_LENGTH, stdin))
+            perror("Error");
+        // if (ft_strchr(path->cmd, '\n'))  // Remove trailing newline
+        //     *ft_strchr(path->cmd, '\n') = '\0';
     //     if (ft_strchr(cmd, '\n'))  // Remove trailing newline
     //         *ft_strchr(cmd, '\n') = '\0';
         // path->args[arg_index] = NULL;
@@ -57,10 +55,10 @@ int     main(int argc, char **argv, char **envp)
             //         exit(1);
             //     }
             // }
-    //}
+    }
     while (envlist)
     {
-        free_t_envlist(envlist);
+        free_t_envlist(&envlist);
         envlist = envlist->next;
     }
     return (EXIT_SUCCESS);
