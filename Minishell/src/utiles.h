@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:18:06 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/17 14:35:51 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/18 07:49:20 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ typedef struct s_envlist
     struct s_envlist   *next;
 }   t_envlist;
 
-// typedef struct s_simple_com
-// {
-//     int     num_available_args;
-//     int     num_args;
-//     char    **args;
-//     simple_command();
-//     void    insert_arg(char *arg);//The method SimpleCommand
-// }   t_simple_com;
+typedef struct s_simple_com
+{
+    int     num_available_args;
+    int     num_args;
+    char    **args;
+    // simple_command();
+    // void    insert_arg(char *arg);//The method SimpleCommand
+}   t_simple_com;
 
 // typedef struct s_command
 // {
