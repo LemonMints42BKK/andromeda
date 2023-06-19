@@ -32,6 +32,8 @@
 #define MAX_ARGS 64
 #define HISTORY_FILE ".andro_history"
 
+
+void my_read_history(void);
 /*prompt*/
 char            *myfgets(char *str, int n, FILE *stream);
 void execute_command(char** args);
