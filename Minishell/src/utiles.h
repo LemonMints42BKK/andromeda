@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
+/*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:18:06 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/18 07:49:20 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:57:42 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_simple_com
 }   t_simple_com;
 
 size_t  ft_strcspn(const char *s, const char *reject);
+void clean_exit(int code_error);
 
 // typedef struct s_command
 // {

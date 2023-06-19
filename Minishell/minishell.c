@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <marvin@42.fr>                   +#+  +:+       +#+        */
+/*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 06:18:17 by pnopjira         #+#    #+#             */
-/*   Updated: 2023/06/19 09:01:55 by kchatvet         ###   ########.fr       */
+/*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
+/*   Updated: 2023/06/19 17:09:41 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,42 +49,58 @@ int	main(int argc, char **argv, char **envp)
          */
  while (1)
     {
+	
         myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
-        cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
-    
+      //  cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
+	//     cmd[ft_strcspn(cmd, "\n")] = printf("\n");
+	    if (cmd[0] != "\n")
+			 cmd[ft_strcspn(cmd, "\n")] = '\0';
 
         // Tokenize input into arguments
          int arg_index = 0;
          token = strtok(cmd, " ");
-         while (token != NULL) {
+         while (token != NULL) 
+	 {
              args[arg_index++] = token;
              token = strtok(NULL, " ");
          }
          args[arg_index] = NULL;
 
          // Exit shell if "exit" command is entered
-         if (strcmp(args[0], "exit") == 0) {
-             exit(0);
+         if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0) 
+	 {
+             clean_exit(errno);
          }
 
          // Fork a child process to execute external commands
          pid_t pid = fork();
-         if (pid == -1) {
+         if (pid == -1) 
+	 {
              perror("fork");
-             exit(1);
-         } else if (pid == 0) {
-             // Child process
-             if (execvp(args[0], args) == -1) {
-                 perror("execvp");
-                 exit(1);
-             }
-         } else {
-             // Parent process
-             if (waitpid(pid, &status, 0) == -1) {
-                 perror("waitpid");
-                 exit(1);
-             }
+             exit(errno);
          }
+	 else if (pid == 0) 
+	 {
+             // Child process
+             if (execvp(args[0], args) == -1) 
+	     {
+                 perror("execvp");
+                 exit(errno);
+             }
+         } 
+	 else 
+	 {
+             // Parent process
+             if (waitpid(pid, &status, 0) == -1) 
+	     {
+                 perror("waitpid");
+                 exit(errno);
+	     }
+         }
+         printf("\n debug %s\n",args[0]);
+		 *cmd = '\0';
+		 cmd[0] = NULL;
+		 printf("\n debug %s\n",args[0]);
     }
   //  return (0);
 //}
@@ -115,5 +131,5 @@ int	main(int argc, char **argv, char **envp)
 		free_t_envlist(&envlist);
 		envlist = envlist->next;
 	}
-	return (EXIT_SUCCESS);
+	 clean_exit(errno);;
 }

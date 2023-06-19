@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utials1.c                                          :+:      :+:    :+:   */
+/*   utiles1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 08:35:17 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/19 08:35:40 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:11:06 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,12 @@ size_t  ft_strcspn(const char *s, const char *reject)
                 i++;
         }
         return (i);
+}
+
+void clean_exit(int code_error)
+{
+        printf("\n bye\n");
+        rl_clear_history();
+        exit(code_error);
 }
 
