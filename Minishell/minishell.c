@@ -33,6 +33,26 @@ int	main(int argc, char **argv, char **envp)
 		if (strcmp(sim_cmd->args[0], "exit") == 0)
 			exit(0);
 	}
+
+// Fork a child process to execute external commands
+		// pid_t pid = fork();
+		// if (pid == -1) {
+		//     perror("fork");
+		//     exit(1);
+		// } else if (pid == 0) {
+		// Child process
+		//     if (execvp(args[0], args) == -1) {
+		//         perror("execvp");
+		//         exit(1);
+		//     }
+		// } else {
+		// Parent process
+		//     if (waitpid(pid, &status, 0) == -1) {
+		//         perror("waitpid");
+		//         exit(1);
+		//     }
+		// }
+
 		// Fork a child process to execute external commands
 		// pid_t pid = fork();
 		// if (pid == -1) {

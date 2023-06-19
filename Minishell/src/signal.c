@@ -1,26 +1,34 @@
 #include "../minishell.h"
+#include <signal.h>
 
 void handle_ctrl_c(int signum) {
     printf("\n");
     rl_on_new_line();
-    rl_replace_line("", 0);
+    rl_replace_line("   ", 0);
     rl_redisplay();
 }
 
 void handle_ctrl_d(int signum) {
+    
     printf("\n");
     exit(EXIT_SUCCESS);
 }
 
 void handle_ctrl_backslash(int signum) {
-    printf("\n");
+    signal(SIGQUIT, SIG_IGN);
+    rl_on_new_line();
+    rl_replace_line("   ", 0);
+    rl_redisplay();
+
+  //  printf("\n");
     // Do nothing
 }
 
 void enable_signals()
 {
     signal(SIGINT, handle_ctrl_c);
-    signal(SIGQUIT, handle_ctrl_backslash);
+  //  signal(SIGQUIT, handle_ctrl_backslash);
+    signal(SIGQUIT, SIG_IGN);
     signal(SIGTERM, SIG_DFL);
     signal(SIGTSTP, SIG_DFL);
     signal(SIGTTIN, SIG_DFL);
