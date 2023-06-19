@@ -6,7 +6,7 @@
 #    By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/6 10:06:40 by kchatvet          #+#    #+#              #
-#    Updated: 2023/05/06 07:38:09 by kanit_c          ###   ########.fr        #
+#    Updated: 2023/06/19 09:05:22 by kchatvet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCE	=	minishell.c\
 			./src/signal.c\
 			./src/env_getenv.c\
 			./src/env_manage.c\
+			./src/utiles1.c
 
 # ./src/tokenize.c\
 #       Tokenize_0.c\

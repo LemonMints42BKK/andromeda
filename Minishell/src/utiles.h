@@ -35,6 +35,8 @@ typedef struct s_simple_com
     // void    insert_arg(char *arg);//The method SimpleCommand
 }   t_simple_com;
 
+size_t  ft_strcspn(const char *s, const char *reject);
+
 // typedef struct s_command
 // {
 //     int                 num_available_simple_commands;

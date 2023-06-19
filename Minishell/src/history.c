@@ -7,6 +7,7 @@ void   andro_wr_history(char *line)
     fd = open(HISTORY_FILE, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
     if (fd == -1)
         ft_putstr_fd("Error : To open history file\n", 2);
+    ft_putstr_fd(line, fd);
     write(fd, "\n", 1);
     if (close(fd) == -1)
         ft_putstr_fd("Error : To close history file\n", 2);    
