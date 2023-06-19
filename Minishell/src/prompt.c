@@ -21,7 +21,7 @@ char	*myfgets(char *buffer, int size, FILE *stream)
     if (stream == NULL)
         return(NULL);
     if (stream->_fileno == 0)
-        line = readline ("Andromeda$ ");
+        line = readline ("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");
 	if (line && (ft_strncmp(line, "", 1) != 0))
 	{
 		ft_strlcpy(buffer, line, size);
