@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/19 17:09:41 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/20 06:53:21 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ int	main(int argc, char **argv, char **envp)
 	
         myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
       //  cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
-	//     cmd[ft_strcspn(cmd, "\n")] = printf("\n");
+
 	 //   if (cmd[0] != "\n")
-			 cmd[ft_strcspn(cmd, "\n")] = '\0';
+	//		 cmd[ft_strcspn(cmd, "\n")] = '\0';
+
+	
+	//       cmd[ft_strcspn(cmd, "\n")] = '\0';
 
         // Tokenize input into arguments
          int arg_index = 0;
@@ -67,10 +70,13 @@ int	main(int argc, char **argv, char **envp)
          args[arg_index] = NULL;
 
          // Exit shell if "exit" command is entered
-         if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0) 
-	 {
+         /* comment exit Segmentation fault (core dumped)
+		 if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0 ||\
+		                  args[0] == EOF) 
+	       {																					
              clean_exit(errno, envlist);
          }
+		 */
 
          // Fork a child process to execute external commands
          pid_t pid = fork();
@@ -132,5 +138,5 @@ int	main(int argc, char **argv, char **envp)
 		envlist = envlist->next;
 	}
  */   
-	 clean_exit(errno, envlist);;
+	 clean_exit(errno, envlist);
 }

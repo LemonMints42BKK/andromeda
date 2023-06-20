@@ -53,7 +53,7 @@ $(NAME): $(OBJ)
 	@echo " "
 	@echo " Make libminishell.a "
 	@echo " "
-	@cc $(FLAGS) $(OBJ) -I./  -L./ -lminishell -lreadline -o $(NAME)
+	@cc $(FLAGS) $(OBJ) -I./  -L./ -lminishell -lreadline  -o $(NAME)
 #	@mv *.o $(OBJ_DIR)
 	@echo " "
 	@echo "    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀"

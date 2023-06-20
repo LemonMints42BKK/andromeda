@@ -1,6 +1,4 @@
 #include "../minishell.h"
-#include <signal.h>
-#include <termios.h>
 
 void handle_ctrl_c(int signum) {
     printf("\n");

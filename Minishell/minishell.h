@@ -27,6 +27,7 @@
 #include <signal.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <termios.h>
 
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_CMD_LENGTH 100
