@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 08:35:17 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/19 16:11:06 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:16:00 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ size_t  ft_strcspn(const char *s, const char *reject)
                 i++;
         }
         return (i);
+}
+
+int    ft_strcmp(char *s1, char *s2)
+{
+        int     i = 0;
+
+        while (s1[i] && s2[i] && (s1[i] == s2[i]))
+                i++;
+        return (s1[i] - s2[i]);
 }
 
 void clean_exit(int code_error, t_envlist *envlist)
