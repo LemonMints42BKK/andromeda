@@ -30,7 +30,7 @@ void  free_t_envlist(t_envlist **temp)
     free((*temp)->key);
     free((*temp)->value);
     free(*temp);
-    (*temp) = NULL;
+ //   (*temp) = NULL;
 }
 
 void    pop(t_envlist **head, char *key)

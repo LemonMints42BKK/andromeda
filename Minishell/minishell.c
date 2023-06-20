@@ -53,7 +53,7 @@ int	main(int argc, char **argv, char **envp)
         myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
       //  cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
 	//     cmd[ft_strcspn(cmd, "\n")] = printf("\n");
-	    if (cmd[0] != "\n")
+	 //   if (cmd[0] != "\n")
 			 cmd[ft_strcspn(cmd, "\n")] = '\0';
 
         // Tokenize input into arguments
@@ -69,7 +69,7 @@ int	main(int argc, char **argv, char **envp)
          // Exit shell if "exit" command is entered
          if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0) 
 	 {
-             clean_exit(errno);
+             clean_exit(errno, envlist);
          }
 
          // Fork a child process to execute external commands
@@ -99,7 +99,7 @@ int	main(int argc, char **argv, char **envp)
          }
          printf("\n debug %s\n",args[0]);
 		 *cmd = '\0';
-		 cmd[0] = NULL;
+		// cmd[0] = NULL;
 		 printf("\n debug %s\n",args[0]);
     }
   //  return (0);
@@ -125,11 +125,12 @@ int	main(int argc, char **argv, char **envp)
 		// }
 
 
-
+/*  move to clean_exit
 	while (envlist)
 	{
 		free_t_envlist(&envlist);
 		envlist = envlist->next;
 	}
-	 clean_exit(errno);;
+ */   
+	 clean_exit(errno, envlist);;
 }

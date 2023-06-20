@@ -36,7 +36,7 @@ typedef struct s_simple_com
 }   t_simple_com;
 
 size_t  ft_strcspn(const char *s, const char *reject);
-void clean_exit(int code_error);
+void clean_exit(int code_error, t_envlist *envlist);
 
 // typedef struct s_command
 // {

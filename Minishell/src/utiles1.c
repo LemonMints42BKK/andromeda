@@ -31,8 +31,13 @@ size_t  ft_strcspn(const char *s, const char *reject)
         return (i);
 }
 
-void clean_exit(int code_error)
-{
+void clean_exit(int code_error, t_envlist *envlist)
+{  
+    	while (envlist)
+	{
+		free_t_envlist(&envlist);
+		envlist = envlist->next;
+	}
         printf("\n bye\n");
         rl_clear_history();
         exit(code_error);
