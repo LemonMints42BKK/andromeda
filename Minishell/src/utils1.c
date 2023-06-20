@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utiles1.c                                          :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 08:35:17 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/20 13:16:00 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:57:50 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,56 @@ int    ft_strcmp(char *s1, char *s2)
         return (s1[i] - s2[i]);
 }
 
+void    free_array(char **tab)
+{
+        int     i;
+
+        if (!tab)
+                return ;
+        i = 0;
+        while (tab[i])
+        {
+                free(tab[i]);
+                i++;
+        }
+        free(tab);
+}
+
+void    stack_destroy(t_envlist *stack)
+{
+        t_envlist  *node;
+        t_envlist  *next;
+
+        node = stack->prev;
+        while (node)
+        {
+                next = node->prev;
+                free(node);
+                node = next;
+        }
+        
+        node = stack->prev;
+        while (node)
+        {
+                next = node->next;
+                free(node);
+                node = next;
+        }
+        
+        free(stack);
+}
+
 void clean_exit(int code_error, t_envlist *envlist)
 {  
-    	while (envlist)
+
+       
+        while (envlist)
 	{
 		free_t_envlist(&envlist);
 		envlist = envlist->next;
 	}
+    //    stack_destroy(envlist);  
+        
         printf("\n bye\n");
         rl_clear_history();
         exit(code_error);

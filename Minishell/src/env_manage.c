@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_manage.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
+/*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:55:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/18 07:21:40 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/06/20 13:28:42 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void  free_t_envlist(t_envlist **temp)
     free((*temp)->key);
     free((*temp)->value);
     free(*temp);
- //   (*temp) = NULL;
+   // (*temp) = NULL;
 }
 
 void    pop(t_envlist **head, char *key)

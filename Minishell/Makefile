@@ -24,7 +24,7 @@ SRCE	=	minishell.c\
 			./src/signal.c\
 			./src/env_getenv.c\
 			./src/env_manage.c\
-			./src/utiles1.c
+			./src/utils1.c
 
 # ./src/tokenize.c\
 #       Tokenize_0.c\

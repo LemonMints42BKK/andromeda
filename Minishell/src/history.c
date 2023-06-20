@@ -19,6 +19,7 @@ void   andro_rd_history(void)
     char *ch;
     char *str;
    
+    rl_clear_history();
     fd = open(HISTORY_FILE, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
     if (fd == -1)
         ft_putstr_fd("Error : to open history file\n", 2);
@@ -28,6 +29,7 @@ void   andro_rd_history(void)
         free (ch);
         add_history(str);
         free(str);
+       
     }
     if(close(fd) == -1)
         ft_putstr_fd("Error : to close history file\n", 2);
