@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/20 06:53:21 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:02:57 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,15 @@ int	main(int argc, char **argv, char **envp)
 
          // Exit shell if "exit" command is entered
          /* comment exit Segmentation fault (core dumped)
+ if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0 ||\
+		                  args[0] == EOF) */
+		 
 		 if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0 ||\
 		                  args[0] == EOF) 
 	       {																					
              clean_exit(errno, envlist);
          }
-		 */
+	
 
          // Fork a child process to execute external commands
          pid_t pid = fork();
