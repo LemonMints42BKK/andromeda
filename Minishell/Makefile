@@ -24,7 +24,10 @@ SRCE	=	minishell.c\
 			./src/signal.c\
 			./src/env_getenv.c\
 			./src/env_manage.c\
-			./src/utils1.c
+			./src/utils1.c\
+			./bin/cd.c\
+			./bin/exit.c\
+			./bin/pwd.c
 
 # ./src/tokenize.c\
 #       Tokenize_0.c\
@@ -36,7 +39,7 @@ SRCE	=	minishell.c\
 #       Environment_0.c\
 #	Environment10.c\
 
-OBJ_DIR = obj/
+RUN_DIR = workspaces/
 
 OBJ = $(SRCE:.c=.o)
 
@@ -49,12 +52,12 @@ $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_LINK) $(LIBMI)
 	@ar rcs $(LIBMI) *.o
-
+#	@mkdir -p $(RUN_DIR)
 	@echo " "
 	@echo " Make libminishell.a "
 	@echo " "
 	@cc $(FLAGS) $(OBJ) -I./  -L./ -lminishell -lreadline  -o $(NAME)
-#	@mv *.o $(OBJ_DIR)
+#	@mv $(NAME) $(RUN_DIR)
 	@echo " "
 	@echo "\033[0;92m ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⡴⠶⠞⠛⠛⠉⠉⠉⠉⠉⠉⠛⠛⠶⢦⣄⡀⡀⠀⠀⠀"
@@ -95,7 +98,7 @@ bonus:
 clean:
 	make clean -C $(LIBFT_DIR)
 #	@rm -rf $(OBJ_DIR)
-	@rm -f *.o src/*.o
+	@rm -f *.o src/*.o bin/*.o
 	@echo " "
 	@echo "* clean compleate "
 	@echo " "

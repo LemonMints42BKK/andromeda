@@ -40,6 +40,13 @@ typedef struct s_data
     t_envlist   *envlist;
 }               t_data;
 
+/* data */
+typedef struct s_andro
+{
+    pid_t pid;
+    char    **env;
+}   t_andro;
+
 /*prompt*/
 char		*myfgets(char *str, int n, FILE *stream);
 /*history*/
@@ -54,6 +61,11 @@ void		push(t_envlist **head, char **key, char **value);
 void		pop(t_envlist **head, char *key);
 /*signal*/
 void	enable_signals(void);
+/*Build in*/
+void cmd_cd(t_andro shell_var);
+void clean_exit(int code_error, t_envlist *envlist);
+
+
 /*tokenize*/
 // int     andro_parsing(t_data *path);
 // //char    *strtok(char *str, char *delim);

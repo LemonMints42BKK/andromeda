@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/20 14:04:57 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/21 08:00:29 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ int	main(int argc, char **argv, char **envp)
     char *args[MAX_CMD_LENGTH];
     char *token;
     int status;
+	t_andro shell_var;
    /* kanit edit on 19/6/2003 */  
 
 
 	get_env(&envlist, envp);
-	if (envlist == NULL)
-		return (EXIT_FAILURE);
+		
+    shell_var.env;
+	cmd_pwd();
+   // cmd_cd(shell_var);
+	cmd_pwd();
 	enable_signals();
 	andro_rd_history();
 
