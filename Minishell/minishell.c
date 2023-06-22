@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/21 08:00:29 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/22 04:49:58 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv, char **envp)
 
          // Exit shell if "exit" command is entered
          /* comment exit Segmentation fault (core dumped)
- if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0 ||\
+      if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0 ||\
 		                  args[0] == EOF) */
 		 
 		 if (ft_strcmp(args[0], "exit") == 0)// ||\
@@ -88,28 +88,29 @@ int	main(int argc, char **argv, char **envp)
          // Fork a child process to execute external commands
          pid_t pid = fork();
          if (pid == -1) 
-	 {
+	      {
              perror("fork");
              exit(errno);
          }
-	 else if (pid == 0) 
-	 {
+	     else if (pid == 0) 
+	     {
              // Child process
              if (execvp(args[0], args) == -1) 
-	     {
+	         {
                  perror("execvp");
                  exit(errno);
              }
          } 
-	 else 
-	 {
+	    else 
+	    {
              // Parent process
              if (waitpid(pid, &status, 0) == -1) 
-	     {
+	         {
                  perror("waitpid");
                  exit(errno);
-	     }
+	         }
          }
+	//	 if (no_interup)
          printf("\n debug %s\n",args[0]);
 		 *cmd = '\0';
 		// cmd[0] = NULL;

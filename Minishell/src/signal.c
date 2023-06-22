@@ -3,8 +3,9 @@
 void handle_ctrl_c(int signum) {
     printf("\n");
     rl_on_new_line();
-    rl_replace_line("   ", 0);
+    rl_replace_line("", 0);
     rl_redisplay();
+ 
 }
 
 void handle_ctrl_d(int signum) {
