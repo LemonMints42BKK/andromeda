@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/23 10:24:56 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:09:45 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*myfgets(char *buffer, int size, FILE *stream)
         add_history(line);
         andro_wr_history(line);
 	}
-	free(line);
+    free(line);
 	return (buffer);
 }
 

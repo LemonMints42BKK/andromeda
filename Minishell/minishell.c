@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/23 10:33:34 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:44:04 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include "./src/utiles.h"
 
 
-int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist)
+
+
+int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 {
     /* kanit edit on 19/6/2003 */  
     char *args[MAX_CMD_LENGTH];
@@ -23,6 +25,7 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist)
   
 	int arg_index;
 	pid_t pid; 
+	char *sh_path;
 	
    /* kanit edit on 19/6/2003 */  
 
@@ -36,11 +39,14 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist)
 
         // Tokenize input into arguments
          arg_index = 0;
-         token = strtok(cmd, " ");
+        token = strtok(cmd, " ");
+	//        token = ft_split(cmd, ' ');
          while (token != NULL) 
 	 {
              args[arg_index++] = token;
              token = strtok(NULL, " ");
+	  //       token = ft_split(NULL, ' ');
+	     
          }
          args[arg_index] = NULL;
 
@@ -66,9 +72,12 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist)
 	     else if (pid == 0) 
 	     {
              // Child process
-             if (execvp(args[0], args) == -1) 
+			 sh_path = ft_strjoin("/bin/", args[0]);
+//			 printf("\n xx %s \n",sh_path);
+			
+             if (execve(sh_path, args, env) == -1) 
 	         {
-                 perror("execvp");
+                 perror("execve");
                  exit(errno);
              }
          } 
@@ -88,6 +97,7 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist)
 		// cmd[0] = NULL;
 		 printf("\n debug %s\n",args[0]);
 */
+    //     free(sh_path);
 		 return (status);
     }
 
@@ -130,19 +140,43 @@ int	main(int argc, char **argv, char **envp)
 
    	}    
          */
-     status = 0;		
-	 myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input	
+     status = 0;
+	 cmd[0] = '\0';
+	 	 	
+//	 myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input	
  while (1)
     {
 	
       //  myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
 		
-		status = execute(&cmd[0], envlist);
-		printf("status %d\n", status);
 		if (status != 2)
+		{
 		    myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
+		}
 	    else
 		    status = 0;
+      
+	
+
+		if (cmd[0] != NULL)
+		     {
+			    write(1, "U", 1);
+			    status = execute(&cmd[0], envlist, envp);
+		      } 	
+	
+		if (*cmd == NULL)
+		    printf("HI NULL\n");
+		   // clean_exit(errno, envlist);
+		   
+		
+		
+		printf("status %d\n", status);	
+		
+	
+		
+		
+	    cmd[0] = '\0';
+	
 
 	}		
      
