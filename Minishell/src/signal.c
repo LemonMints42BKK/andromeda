@@ -3,20 +3,18 @@
 void handle_ctrl_c(int signum) 
 {
     printf("\b\b  \n");
+    printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
+
+  /*	    
     rl_on_new_line();
     rl_replace_line("", 0);
     rl_redisplay();
- 
+   */
 }
 
-void handle_ctrl_d(int signum) {
-    
-    printf("\n");
-    exit(EXIT_SUCCESS);
-}
-
-void handle_ctrl_backslash(int signum) 
+void handle_ctrl_d(int signum) 
 {
+
     struct termios saved_settings;
     struct termios new_settings;
 
@@ -30,12 +28,20 @@ void handle_ctrl_backslash(int signum)
     rl_on_new_line();
     rl_replace_line("", 0);
     rl_redisplay();
+  tcsetattr(0, TCSANOW, &saved_settings);
+    
+    printf("\n");
+    exit(EXIT_SUCCESS);
+}
 
-  //  printf("\n");
+void handle_ctrl_backslash(int signum) 
+{
+   signal(SIGQUIT, SIG_IGN);
+  //   printf("\b\b");
     // Do nothing
 
      // Restore the saved terminal settings
-    tcsetattr(0, TCSANOW, &saved_settings);
+    
 }
 
 void enable_signals()

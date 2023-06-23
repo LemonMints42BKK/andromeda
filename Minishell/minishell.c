@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/23 15:44:04 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:43:59 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,26 +151,25 @@ int	main(int argc, char **argv, char **envp)
 		
 		if (status != 2)
 		{
-		    myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
+		  printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
+		    
 		}
-	    else
-		    status = 0;
-      
-	
+	  	myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
 
 		if (cmd[0] != NULL)
 		     {
-			    write(1, "U", 1);
-			    status = execute(&cmd[0], envlist, envp);
+				    status = execute(&cmd[0], envlist, envp);
 		      } 	
-	
+	  if (cmd[0] == NULL && status == 2)
+	    status = 0;
+			
 		if (*cmd == NULL)
-		    printf("HI NULL\n");
+		    printf("\n");
 		   // clean_exit(errno, envlist);
 		   
 		
 		
-		printf("status %d\n", status);	
+	//	printf("status %d\n", status);	
 		
 	
 		

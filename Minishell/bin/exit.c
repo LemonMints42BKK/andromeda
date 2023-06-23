@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:04:53 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/21 07:32:23 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:30:28 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void clean_exit(int code_error, t_envlist *envlist)
 	}
     //    stack_destroy(envlist);  
         
-        printf("\n bye\n");
+        write(1,"exit\n", 5);
         rl_clear_history();
         exit(code_error);
 }
