@@ -1,7 +1,8 @@
 #include "../minishell.h"
 
-void handle_ctrl_c(int signum) {
-    printf("\n");
+void handle_ctrl_c(int signum) 
+{
+    printf("\b\b  \n");
     rl_on_new_line();
     rl_replace_line("", 0);
     rl_redisplay();

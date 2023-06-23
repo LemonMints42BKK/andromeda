@@ -6,65 +6,36 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/22 04:49:58 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:33:34 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "./src/utiles.h"
 
-int	main(int argc, char **argv, char **envp)
-{
-	char			cmd[MAX_COMMAND_LENGTH];
-	t_envlist		*envlist;
-	t_simple_com	*sim_cmd;
-    
 
-  /* kanit edit on 19/6/2003 */  
+int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist)
+{
+    /* kanit edit on 19/6/2003 */  
     char *args[MAX_CMD_LENGTH];
     char *token;
-    int status;
-	t_andro shell_var;
+	int status;
+  
+	int arg_index;
+	pid_t pid; 
+	
    /* kanit edit on 19/6/2003 */  
 
-
-	get_env(&envlist, envp);
-		
-    shell_var.env;
-	cmd_pwd();
-   // cmd_cd(shell_var);
-	cmd_pwd();
-	enable_signals();
-	andro_rd_history();
-
-      /*  temp close pat edit	
-	while (1)
-	{
-		if (!myfgets(cmd, MAX_CMD_LENGTH, stdin))
-			return (perror("Error"), EXIT_FAILURE);
-      
-            
-     	if (ft_strchr(cmd, '\n'))
-			*ft_strchr(cmd, '\n') = '\0';
-		if (strcmp(sim_cmd->args[0], "exit") == 0)
-			exit(0);
-
-   	}    
-         */
- while (1)
-    {
-	
-        myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
-      //  cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
+    //  cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
 
 	 //   if (cmd[0] != "\n")
 	//		 cmd[ft_strcspn(cmd, "\n")] = '\0';
 
 	
-	//       cmd[ft_strcspn(cmd, "\n")] = '\0';
+ //	cmd[ft_strcspn(cmd, "\n")] = '\0';
 
         // Tokenize input into arguments
-         int arg_index = 0;
+         arg_index = 0;
          token = strtok(cmd, " ");
          while (token != NULL) 
 	 {
@@ -86,7 +57,7 @@ int	main(int argc, char **argv, char **envp)
 	
 
          // Fork a child process to execute external commands
-         pid_t pid = fork();
+         pid = fork();
          if (pid == -1) 
 	      {
              perror("fork");
@@ -110,12 +81,71 @@ int	main(int argc, char **argv, char **envp)
                  exit(errno);
 	         }
          }
+/*
 	//	 if (no_interup)
          printf("\n debug %s\n",args[0]);
-		 *cmd = '\0';
+	//	 *cmd = '\0';
 		// cmd[0] = NULL;
 		 printf("\n debug %s\n",args[0]);
+*/
+		 return (status);
     }
+
+   
+
+	
+
+
+int	main(int argc, char **argv, char **envp)
+{
+	char			cmd[MAX_COMMAND_LENGTH];
+	t_envlist		*envlist;
+	t_simple_com	*sim_cmd;
+	int status;
+    
+
+  
+
+
+	get_env(&envlist, envp);
+		
+
+	cmd_pwd();
+   // cmd_cd(shell_var);
+	cmd_pwd();
+	enable_signals();
+	andro_rd_history();
+
+ /*  temp close pat edit	
+	while (1)
+	{
+		if (!myfgets(cmd, MAX_CMD_LENGTH, stdin))
+			return (perror("Error"), EXIT_FAILURE);
+      
+            
+     	if (ft_strchr(cmd, '\n'))
+			*ft_strchr(cmd, '\n') = '\0';
+		if (strcmp(sim_cmd->args[0], "exit") == 0)
+			exit(0);
+
+   	}    
+         */
+     status = 0;		
+	 myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input	
+ while (1)
+    {
+	
+      //  myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
+		
+		status = execute(&cmd[0], envlist);
+		printf("status %d\n", status);
+		if (status != 2)
+		    myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
+	    else
+		    status = 0;
+
+	}		
+     
   //  return (0);
 //}
 
