@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/24 01:14:24 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/24 10:42:15 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
       if (ft_strncmp(args[0], "exit", ft_strlen(args[0])) == 0 ||\
 		                  args[0] == EOF) */
 		 
-		 if (ft_strcmp(args[0], "exit") == 0)// ||\
-		                  args[0] == NULL) 
+		 if (ft_strcmp(args[0], "exit") == 0)		                
 	       {																					
              clean_exit(errno, envlist);
          }
@@ -120,12 +119,9 @@ int	main(int argc, char **argv, char **envp)
 	t_envlist		*envlist;
 	t_simple_com	*sim_cmd;
 	int status;
-    
-
-  
-
-
-	get_env(&envlist, envp);
+	int ct;
+	
+  	get_env(&envlist, envp);
 		
 
 	cmd_pwd();
@@ -149,6 +145,7 @@ int	main(int argc, char **argv, char **envp)
    	}    
          */
      status = 0;
+	 ct = 0;
 	 cmd[0] = '\0';
 	 	 	
 //	 myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input	
@@ -159,14 +156,32 @@ int	main(int argc, char **argv, char **envp)
 		
 //		if (status != 2 ) //|| status != 131)
 //		{
-	//	  printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
-          myfgets(cmd, MAX_CMD_LENGTH, stdin, status);  // Read user input
-          status = 0;
+	//	  printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");
+	/*     if (status == 2 )
+		 { 
+			ct++;
+			if (ct == 2)
+			{
+			  status = 0;
+			  ct = 0;
+			}
+		 }
+	*/	 
+      
+     //   if (status != 2 )
+	//	{
+           myfgets(cmd, MAX_CMD_LENGTH, stdin, status);  // Read user input
+          
+	//	}
+	//	else 
+	//	{
+		  status = 0;	
+	//	}
 		    
 //		}
 	//  	myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
   /*   handdle check falut */
-		if (cmd[0] != '\0')
+		   if (cmd[0] != '\0')
 		     {
 				    status = execute(&cmd[0], envlist, envp);
 		      } 	
@@ -183,9 +198,18 @@ int	main(int argc, char **argv, char **envp)
        }      
     
 */
-	
+	//   printf("status at mini %d", status);
+	/*/   while  (status == 2 )
+	   {
+	        status = execute(&cmd[0], envlist, envp);
+			status = 0;
+			break;
+	   }
+	  */ 
+	  //  printf("status at mini %d", status);
+	        
 	    cmd[0] = '\0';
-	
+
 
 	}		
      

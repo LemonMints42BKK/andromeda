@@ -64,6 +64,9 @@ void	enable_signals(void);
 /*Build in*/
 void cmd_cd(t_andro shell_var);
 void clean_exit(int code_error, t_envlist *envlist);
+/*exe builtins cmd*/
+void exe_builtin_cmd(char **tokens);
+void echo_cmd(char **tokens);
 
 
 /*tokenize*/

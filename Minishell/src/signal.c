@@ -2,16 +2,17 @@
 
 void handle_ctrl_c(int signum) 
 {
+/* problem when recall history 
    printf("\b\b\n");
    printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
 
-/*
+/* proble when cat and double Ctrl+C */
    rl_replace_line("", 0);
     printf("\n");	
         rl_on_new_line();
   //    rl_replace_line("", 0);
      rl_redisplay();
-*/ 
+
 }
 
 void handle_ctrl_d(int signum) 

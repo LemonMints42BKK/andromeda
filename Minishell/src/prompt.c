@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/24 03:18:22 by g65420029        ###   ########.fr       */
+/*   Updated: 2023/06/24 10:43:58 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,22 @@ char	*myfgets(char *buffer, int size, FILE *stream,int status)
     if (stream == NULL)
         return(NULL);
     if (stream->_fileno == 0)
-        if (status != 2 )
-		line = readline ("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");
-	else
     {
-		line = readline("");
-      
-      //  status = 0;
+        if (status != 2 )
+		     line = readline ("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");
+         else
+           {
+           //   status = 0;
+    //      
+    //        handle_ctrl_c(SIGINT); 
+             line = readline("");
+             // free (line);
+            // exit(errno);
+       
+            }
+    
     }
+    
 
     if (line == NULL)
     {
@@ -37,19 +45,23 @@ char	*myfgets(char *buffer, int size, FILE *stream,int status)
         free (line);
         exit(errno);
     }
-  
+    
+ //   printf("status at prompt %d", status);
    
     if (line && (ft_strncmp(line, "", 1) != 0))
 	{
 		ft_strlcpy(buffer, line, size);
         add_history(line);
+        
         andro_wr_history(line);
 	}
     else if (status == 2 )
-       write(1, "\n", 1);
+        write(1, "\n", 1);
     status = 0;
     free(line);
 	return (buffer);
 }
+
+
 
 
