@@ -27,7 +27,9 @@ SRCE	=	minishell.c\
 			./src/utils1.c\
 			./bin/cd.c\
 			./bin/exit.c\
-			./bin/pwd.c
+			./bin/pwd.c\
+			./bin/echo.c\
+			./bin/exe_cmd.c
 
 # ./src/tokenize.c\
 #       Tokenize_0.c\

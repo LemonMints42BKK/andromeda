@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/24 10:42:15 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:04:00 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 	int arg_index;
 	pid_t pid; 
 	char *sh_path;
+	int in_cmd;
 //	char *test_path;
 
 //	test_path ="/usr/local/rvm/gems/ruby-3.1.4/bin:/usr/local/rvm/gems/ruby-3.1.4@global/bin:/usr/local/rvm/rubies/ruby-3.1.4/bin:/vscode/bin/linux-x64/695af097c7bd098fbf017ce3ac85e09bbc5dda06/bin/remote-cli:/home/codespace/.local/bin:/home/codespace/.dotnet:/home/codespace/nvm/current/bin:/home/codespace/.php/current/bin:/home/codespace/.python/current/bin:/home/codespace/java/current/bin:/home/codespace/.ruby/current/bin:/home/codespace/.local/bin:/usr/local/oryx:/usr/local/go/bin:/go/bin:/usr/local/sdkman/bin:/usr/local/sdkman/candidates/java/current/bin:/usr/local/sdkman/candidates/gradle/current/bin:/usr/local/sdkman/candidates/maven/current/bin:/usr/local/sdkman/candidates/ant/current/bin:/usr/local/rvm/gems/default/bin:/usr/local/rvm/gems/default@global/bin:/usr/local/rvm/rubies/default/bin:/usr/local/share/rbenv/bin:/opt/conda/bin:/usr/local/php/current/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/nvs:/usr/local/share/nvm/versions/node/v19.9.0/bin:/usr/local/hugo/bin:/usr/local/dotnet/current:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/rvm/bin";
@@ -61,10 +62,15 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 		 if (ft_strcmp(args[0], "exit") == 0)		                
 	       {																					
              clean_exit(errno, envlist);
-         }
+           } 
+		  in_cmd = 42; 
+		  in_cmd = exe_builtin_cmd(args);
+		  printf("%d",in_cmd);
 	
 
          // Fork a child process to execute external commands
+	if (in_cmd)
+	{	 
          pid = fork();
          if (pid == -1) 
 	      {
@@ -97,6 +103,9 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
                  exit(errno);
 	         }
          }
+	}
+
+
 /*
 	//	 if (no_interup)
          printf("\n debug %s\n",args[0]);
@@ -124,9 +133,9 @@ int	main(int argc, char **argv, char **envp)
   	get_env(&envlist, envp);
 		
 
-	cmd_pwd();
+	
    // cmd_cd(shell_var);
-	cmd_pwd();
+
 	enable_signals();
 	andro_rd_history();
 
@@ -198,7 +207,7 @@ int	main(int argc, char **argv, char **envp)
        }      
     
 */
-	//   printf("status at mini %d", status);
+	//    printf("status at mini %d", status);
 	/*/   while  (status == 2 )
 	   {
 	        status = execute(&cmd[0], envlist, envp);
