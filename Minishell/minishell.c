@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/23 16:43:59 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/24 01:14:24 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 	int arg_index;
 	pid_t pid; 
 	char *sh_path;
+//	char *test_path;
+
+//	test_path ="/usr/local/rvm/gems/ruby-3.1.4/bin:/usr/local/rvm/gems/ruby-3.1.4@global/bin:/usr/local/rvm/rubies/ruby-3.1.4/bin:/vscode/bin/linux-x64/695af097c7bd098fbf017ce3ac85e09bbc5dda06/bin/remote-cli:/home/codespace/.local/bin:/home/codespace/.dotnet:/home/codespace/nvm/current/bin:/home/codespace/.php/current/bin:/home/codespace/.python/current/bin:/home/codespace/java/current/bin:/home/codespace/.ruby/current/bin:/home/codespace/.local/bin:/usr/local/oryx:/usr/local/go/bin:/go/bin:/usr/local/sdkman/bin:/usr/local/sdkman/candidates/java/current/bin:/usr/local/sdkman/candidates/gradle/current/bin:/usr/local/sdkman/candidates/maven/current/bin:/usr/local/sdkman/candidates/ant/current/bin:/usr/local/rvm/gems/default/bin:/usr/local/rvm/gems/default@global/bin:/usr/local/rvm/rubies/default/bin:/usr/local/share/rbenv/bin:/opt/conda/bin:/usr/local/php/current/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/nvs:/usr/local/share/nvm/versions/node/v19.9.0/bin:/usr/local/hugo/bin:/usr/local/dotnet/current:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/rvm/bin";
 	
    /* kanit edit on 19/6/2003 */  
 
@@ -73,9 +76,14 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 	     {
              // Child process
 			 sh_path = ft_strjoin("/bin/", args[0]);
+
+			 
 //			 printf("\n xx %s \n",sh_path);
 			
-             if (execve(sh_path, args, env) == -1) 
+        //
+		 //      if (execve(test_path, args, NULL) == -1) 
+		     if (execve(sh_path, args, env) == -1) 
+		//	   if (execve(args[0], args, env) == -1) 
 	         {
                  perror("execve");
                  exit(errno);
@@ -156,14 +164,14 @@ int	main(int argc, char **argv, char **envp)
 		}
 	  	myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
 
-		if (cmd[0] != NULL)
+		if (cmd[0] != '\0')
 		     {
 				    status = execute(&cmd[0], envlist, envp);
 		      } 	
-	  if (cmd[0] == NULL && status == 2)
+	  if (cmd[0] == '\0' && status == 2)
 	    status = 0;
 			
-		if (*cmd == NULL)
+		if (cmd[0] == '\0')
 		    printf("\n");
 		   // clean_exit(errno, envlist);
 		   
