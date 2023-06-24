@@ -157,31 +157,33 @@ int	main(int argc, char **argv, char **envp)
 	
       //  myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
 		
-		if (status != 2)
-		{
-		  printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
+//		if (status != 2 ) //|| status != 131)
+//		{
+	//	  printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
+          myfgets(cmd, MAX_CMD_LENGTH, stdin, status);  // Read user input
+          status = 0;
 		    
-		}
-	  	myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
-
+//		}
+	//  	myfgets(cmd, MAX_CMD_LENGTH, stdin);  // Read user input
+  /*   handdle check falut */
 		if (cmd[0] != '\0')
 		     {
 				    status = execute(&cmd[0], envlist, envp);
 		      } 	
-	  if (cmd[0] == '\0' && status == 2)
-	    status = 0;
-			
-		if (cmd[0] == '\0')
-		    printf("\n");
-		   // clean_exit(errno, envlist);
-		   
-		
-		
-	//	printf("status %d\n", status);	
-		
+/*   create in prompt
+//	  if (cmd[0] == '\0' && (status == 2 )) //|| status == 131))
+       if  (status == 2 ) //|| status == 131))
+      {
+         //  printf("Q\n");
+         //   rl_replace_line("kkw", 0);
+         //    rl_redisplay();
+         //    printf("\n");
+      //     status = 0;
+   //       printf("Q\n");
+       }      
+    
+*/
 	
-		
-		
 	    cmd[0] = '\0';
 	
 
@@ -190,25 +192,7 @@ int	main(int argc, char **argv, char **envp)
   //  return (0);
 //}
 
-		// Fork a child process to execute external commands
-		// pid_t pid = fork();
-		// if (pid == -1) {
-		//     perror("fork");
-		//     exit(1);
-		// } else if (pid == 0) {
-		// Child process
-		//     if (execvp(args[0], args) == -1) {
-		//         perror("execvp");
-		//         exit(1);
-		//     }
-		// } else {
-		// Parent process
-		//     if (waitpid(pid, &status, 0) == -1) {
-		//         perror("waitpid");
-		//         exit(1);
-		//     }
-		// }
-
+	
 
 /*  move to clean_exit
 	while (envlist)

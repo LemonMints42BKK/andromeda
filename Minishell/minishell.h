@@ -48,7 +48,7 @@ typedef struct s_andro
 }   t_andro;
 
 /*prompt*/
-char		*myfgets(char *str, int n, FILE *stream);
+char		*myfgets(char *str, int n, FILE *stream, int status);
 /*history*/
 void		andro_wr_history(char *line);
 void		andro_rd_history(void);

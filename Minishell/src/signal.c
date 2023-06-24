@@ -2,14 +2,16 @@
 
 void handle_ctrl_c(int signum) 
 {
-    printf("\b\b  \n");
-    printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
+   printf("\b\b\n");
+   printf("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");	
 
-  /*	    
-    rl_on_new_line();
-    rl_replace_line("", 0);
-    rl_redisplay();
-   */
+/*
+   rl_replace_line("", 0);
+    printf("\n");	
+        rl_on_new_line();
+  //    rl_replace_line("", 0);
+     rl_redisplay();
+*/ 
 }
 
 void handle_ctrl_d(int signum) 
@@ -36,7 +38,7 @@ void handle_ctrl_d(int signum)
 
 void handle_ctrl_backslash(int signum) 
 {
-   signal(SIGQUIT, SIG_IGN);
+  // signal(SIGQUIT, SIG_IGN);
   //   printf("\b\b");
     // Do nothing
 
@@ -49,7 +51,7 @@ void enable_signals()
 
     signal(SIGINT, handle_ctrl_c);
   //  signal(SIGQUIT, handle_ctrl_backslash);
-    signal(SIGQUIT, SIG_IGN);
+   signal(SIGQUIT, SIG_IGN);
     signal(SIGTERM, SIG_DFL);
     signal(SIGTSTP, SIG_DFL);
     signal(SIGTTIN, SIG_DFL);
