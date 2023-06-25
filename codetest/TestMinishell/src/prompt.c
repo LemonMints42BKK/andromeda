@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/11 14:54:01 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:13:50 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void   my_read_history(void)
 {
    int  fd;
     char *ch;
+    char *str;
    
     fd = open(HISTORY_FILE, O_RDWR | O_CREAT);
     if (fd == -1)
@@ -28,9 +29,10 @@ void   my_read_history(void)
     }
       while ((ch = get_next_line(fd)) != NULL)
       {
-         ch = ft_strtrim(ch, "\n");
-         add_history(ch);
-         free(ch);
+         str = ft_strtrim(ch, "\n");
+         free (ch);
+         add_history(str);
+         free(str);
       }
       close(fd);
 }

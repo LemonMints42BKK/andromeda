@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 04:36:24 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/11 14:46:59 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:20:40 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(void)
 
          // Exit shell if "exit" command is entered
          if (strcmp(args[0], "exit") == 0) {
+            rl_clear_history();
              exit(0);
          }
 
