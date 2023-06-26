@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/19 08:35:17 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/26 08:44:58 by kchatvet         ###   ########.fr       */
+/*   Created: 2023/06/26 09:03:37 by kchatvet          #+#    #+#             */
+/*   Updated: 2023/06/26 09:05:07 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,45 +40,36 @@ int    ft_strcmp(char *s1, char *s2)
         return (s1[i] - s2[i]);
 }
 
-char* ft_strtok(char* str, const char* delim) 
+char	*ft_strtok(char *str, const char *delim)
 {
-    static char* nextToken = NULL; // Stores the pointer to the next token
-    if (str != NULL) {
-        nextToken = str;
-    }
+	static char	*next_token;
+	char	*start;
+	char	*end;
 
-
-    if (nextToken == NULL) {
-        return NULL; // No more tokens to extract
-    }
-
-    // Find the start of the token
-    char* start = nextToken;
-    while (*start != '\0' && ft_strchr(delim, *start) != NULL) {
-        start++;
-    }
-
-    if (*start == '\0') {
-        nextToken = NULL; // No more tokens to extract
-        return NULL;
-    }
-
-    // Find the end of the token
-    char* end = start;
-    while (*end != '\0' && strchr(delim, *end) == NULL) {
-        end++;
-    }
-
-    if (*end != '\0') {
-        *end = '\0'; // Replace the delimiter with null terminator
-        nextToken = end + 1; // Set the pointer to the next token
-    } else {
-        nextToken = NULL; // No more tokens to extract
-    }
-
-    return start;
+	if (str != NULL)
+		next_token = str;
+	if (next_token == NULL)
+		return (NULL);
+	start = next_token;
+	while (*start != '\0' && ft_strchr(delim, *start) != NULL)
+		start++;
+	if (*start == '\0')
+	{
+		next_token = NULL;
+		return (NULL);
+	}
+	end = start;
+	while (*end != '\0' && ft_strchr(delim, *end) == NULL)
+		end++;
+	if (*end != '\0')
+	{
+		*end = '\0';
+		next_token = end + 1;
+	}
+	else
+		next_token = NULL;
+	return (start);
 }
-
 
 void    free_array(char **tab)
 {
@@ -115,8 +106,5 @@ void    stack_destroy(t_envlist *stack)
                 free(node);
                 node = next;
         }
-        
         free(stack);
 }
-
-
