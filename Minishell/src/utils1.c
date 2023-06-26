@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 08:35:17 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/26 06:36:19 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/26 08:44:58 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char* ft_strtok(char* str, const char* delim)
     if (str != NULL) {
         nextToken = str;
     }
+
 
     if (nextToken == NULL) {
         return NULL; // No more tokens to extract
