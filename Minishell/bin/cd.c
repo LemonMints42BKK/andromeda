@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:19:11 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/24 12:29:58 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/26 07:44:08 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void change_directory(char **tokens)
     home_dir =ft_strtrim(str, "=");
   //  free (str);
     home_dir = str;
-    printf("home dir %s=x\n",home_dir);
+  //  printf("home dir %s=x\n",home_dir);
     if (tokens[1] == NULL) 
     {    
             if (home_dir != NULL) 

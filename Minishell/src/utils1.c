@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 08:35:17 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/21 07:04:47 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/26 06:36:19 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,45 @@ int    ft_strcmp(char *s1, char *s2)
                 i++;
         return (s1[i] - s2[i]);
 }
+
+char* ft_strtok(char* str, const char* delim) 
+{
+    static char* nextToken = NULL; // Stores the pointer to the next token
+    if (str != NULL) {
+        nextToken = str;
+    }
+
+    if (nextToken == NULL) {
+        return NULL; // No more tokens to extract
+    }
+
+    // Find the start of the token
+    char* start = nextToken;
+    while (*start != '\0' && ft_strchr(delim, *start) != NULL) {
+        start++;
+    }
+
+    if (*start == '\0') {
+        nextToken = NULL; // No more tokens to extract
+        return NULL;
+    }
+
+    // Find the end of the token
+    char* end = start;
+    while (*end != '\0' && strchr(delim, *end) == NULL) {
+        end++;
+    }
+
+    if (*end != '\0') {
+        *end = '\0'; // Replace the delimiter with null terminator
+        nextToken = end + 1; // Set the pointer to the next token
+    } else {
+        nextToken = NULL; // No more tokens to extract
+    }
+
+    return start;
+}
+
 
 void    free_array(char **tab)
 {

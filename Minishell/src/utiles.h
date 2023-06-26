@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 11:18:06 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/06/20 13:17:02 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/26 06:38:47 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_simple_com
 
 size_t  ft_strcspn(const char *s, const char *reject);
 int    ft_strcmp(char *s1, char *s2);
+char *ft_strtok(char* str, const char* delim);
 void clean_exit(int code_error, t_envlist *envlist);
 
 // typedef struct s_command

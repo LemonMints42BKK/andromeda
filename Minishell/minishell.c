@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/24 12:04:00 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/06/26 07:41:35 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 
         // Tokenize input into arguments
          arg_index = 0;
-        token = strtok(cmd, " ");
+	     token = ft_strtok(cmd, " ");
 	//        token = ft_split(cmd, ' ');
          while (token != NULL) 
 	 {
              args[arg_index++] = token;
-             token = strtok(NULL, " ");
+             token = ft_strtok(NULL, " ");
 	  //       token = ft_split(NULL, ' ');
 	     
          }
@@ -65,7 +65,8 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
            } 
 		  in_cmd = 42; 
 		  in_cmd = exe_builtin_cmd(args);
-		  printf("%d",in_cmd);
+	
+	//	  printf("%d status %d errno %d->",in_cmd,status,errno);
 	
 
          // Fork a child process to execute external commands
@@ -106,14 +107,9 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 	}
 
 
-/*
-	//	 if (no_interup)
-         printf("\n debug %s\n",args[0]);
-	//	 *cmd = '\0';
-		// cmd[0] = NULL;
-		 printf("\n debug %s\n",args[0]);
-*/
-    //     free(sh_path);
+
+	//	 printf("\nkanit%d\n",errno);
+
 		 return (status);
     }
 
@@ -153,6 +149,7 @@ int	main(int argc, char **argv, char **envp)
 
    	}    
          */
+	
      status = 0;
 	 ct = 0;
 	 cmd[0] = '\0';
@@ -216,7 +213,7 @@ int	main(int argc, char **argv, char **envp)
 	   }
 	  */ 
 	  //  printf("status at mini %d", status);
-	        
+	//    printf("\nB\n");	    
 	    cmd[0] = '\0';
 
 
