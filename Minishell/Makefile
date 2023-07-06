@@ -10,9 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS	=	-Wall -Wextra -Werror
+#FLAGS	=	-Wall -Wextra -Werror
 
-## check leak CFLAGS = -Wall  -Wextra -Werror -g -fsanitize=address
+## check leak 
+FLAGS = -Wall  -Wextra -Werror -g -fsanitize=address
 
 NAME	=	minishell
 
@@ -29,6 +30,7 @@ SRCE	=	minishell.c\
 			./bin/exit.c\
 			./bin/pwd.c\
 			./bin/echo.c\
+			./bin/env.c\
 			./bin/exe_cmd.c
 
 # ./src/tokenize.c\

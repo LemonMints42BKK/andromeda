@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/26 07:41:35 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/07/06 01:54:58 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
              clean_exit(errno, envlist);
            } 
 		  in_cmd = 42; 
-		  in_cmd = exe_builtin_cmd(args);
+		  in_cmd = exe_builtin_cmd(args, env);
 	
 	//	  printf("%d status %d errno %d->",in_cmd,status,errno);
 	

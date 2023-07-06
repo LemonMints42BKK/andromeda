@@ -1,6 +1,22 @@
-#include "./minishell.h"
-#include "utiles.h"
+#include "../minishell.h"
+// #include "utiles.h"
 
+void cmd_env(char **env) 
+{
+    int i = 0;
+  
+    while (env[i] != NULL) 
+    {
+        printf("%s\n", env[i]);
+        i++;
+    }
+    printf ("kanit kanit ENV \n");
+ 
+}
+
+
+
+/*
 void    push(t_list **head, char **name, char **var)
 {
     t_list	*temp;
@@ -73,3 +89,4 @@ t_list  *init_env(int argc, char **argv)
     }
     return(head);
 }
+*/

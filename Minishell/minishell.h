@@ -65,10 +65,11 @@ void	enable_signals(void);
 void cmd_cd(t_andro shell_var);
 void clean_exit(int code_error, t_envlist *envlist);
 /*exe builtins cmd*/
-int exe_builtin_cmd(char **tokens);
+int exe_builtin_cmd(char **tokens, char **env);
 void echo_cmd(char **tokens);
 void change_directory(char **tokens);
 void cmd_pwd(void);
+void cmd_env(char **env);
 
 
 /*tokenize*/
