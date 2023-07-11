@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_manage.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <pnopjira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:55:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/07/02 19:24:59 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/07/04 08:49:22 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,6 @@ void    push(t_envlist **head, char **key, char **value)
     }
     else
         *head = temp;
-	// if (*head!= NULL)
-	// {
-	// 	temp->next = *head;
-    //     (*head)->prev = temp;
-	// }
-    // *head = temp;
     ptr = NULL;
 	temp = NULL;
 }

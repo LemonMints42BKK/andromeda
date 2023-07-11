@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <pnopjira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 16:33:39 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/07/02 18:36:57 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:12:15 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@ t_command    *tokenize(char  *cmd)
     if (!final_tb)
         return (NULL);
     setup_tab(&final_tb);
-    temp = ft_split(cmd, PIPE);
-    while (*temp && (ft_strncmp(*temp, "", 1) != 0))
-    {
-        printf("%s\n", ft_strtrim(*temp," "));
-        temp++;
-    }
+    andro_lexer(&final_tb, cmd);
     return (final_tb);
 }
 
@@ -39,6 +34,8 @@ void    setup_tab(t_command **com_tab)
     (*com_tab)->in_a = NULL;
     (*com_tab)->out_a = NULL;
     (*com_tab)->err_a = NULL;
+    (*com_tab)->app_a = NULL;
+    (*com_tab)->here_a = NULL;
     (*com_tab)->perv = NULL;
     (*com_tab)->next = NULL;
 }

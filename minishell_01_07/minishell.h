@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <pnopjira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:33:00 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/07/02 19:48:26 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/07/04 09:14:51 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void		pop(t_envlist **head, char *key);
 /*signal*/
 void	    enable_signals(void);
 /*tokenize*/
-t_command    *tokenize(char  *cmd);
+t_command   *tokenize(char  *cmd);
+int         andro_lexer(t_command **final_tb, char *cmd);
 /*Build in*/
 void        cmd_cd(t_andro shell_var);
 
@@ -125,9 +126,7 @@ void        stack_destroy(t_envlist *stack);
 /*print*/
 void	    print_env(t_andro *data);
 void	    print_final_tb(t_andro *data);
-/*tokenize*/
-// int     andro_parsing(t_data *path);
-// //char    *strtok(char *str, char *delim);
+
 // /*builtins*/
 // void execute_command(char** args);
 // void execute_external_command(char** args);

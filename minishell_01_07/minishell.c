@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <pnopjira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/07/02 19:51:24 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/07/04 08:39:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv, char **envp)
      	if (ft_strchr(data->cmd, '\n'))
 			*ft_strchr(data->cmd, '\n') = '\0';
 		data->final_tb = tokenize(data->cmd);
-//		print_final_tb(data);
+		print_final_tb(data);
 		if (data->cmd[0] != '\0')
 			data->status = execute(&data->cmd[0], data, envp);
 		// if (data->status == 2)
@@ -82,6 +82,14 @@ void	print_final_tb(t_andro *data)
 	while (ptr)
 	{
 		printf("number_of_simple_command:%d\n", ptr->n_simple_cmd);
+        printf("command:%p\n", ptr->sim_commands);
+        printf("in_file:%s\n", ptr->in_a);
+        printf("out_file:%s\n", ptr->out_a);
+        printf("error_file:%s\n", ptr->err_a);
+        printf("append_file:%s\n", ptr->app_a);
+        printf("heredoc file:%s\n", ptr->here_a);
+        printf("prev_node:%p\n", ptr->perv);
+        printf("next_node:%p\n", ptr->next);
 		ptr = ptr->next;
 	}
 }
