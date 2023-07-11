@@ -6,13 +6,13 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 10:04:51 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/24 12:14:28 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/07/06 02:03:02 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int exe_builtin_cmd(char **tokens)
+int exe_builtin_cmd(char **tokens, char **env)
 {
    if (ft_strcmp(tokens[0], "echo") == 0)
    {
@@ -26,6 +26,10 @@ int exe_builtin_cmd(char **tokens)
    {
         cmd_pwd();
    }
+   else if (ft_strcmp(tokens[0], "env") == 0)
+   {
+        cmd_env(env);
+   }   
    else if (ft_strcmp(tokens[0], "./minishell") == 0)
     {
         execve("./", tokens, NULL);

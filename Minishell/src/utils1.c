@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:03:37 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/26 09:05:07 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/07/07 08:34:22 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,53 @@ int    ft_strcmp(char *s1, char *s2)
         return (s1[i] - s2[i]);
 }
 
+static char	*sub_strtok(char *ptr, const char *delim, int se)
+{
+	char	*len;
+
+	len = ptr;
+        if (se)
+	{
+		while (*len != '\0' && ft_strchr(delim, *len) != NULL)
+			len++;
+	}
+	else
+	{
+		while (*len != '\0' && ft_strchr(delim, *len) == NULL)
+			len++;
+	}
+	return (len);
+}
+
+char	*ft_strtok(char *str, const char *delim)
+{
+	static char	*next_token;
+	char		*start;
+	char		*end;
+
+	if (str != NULL)
+		next_token = str;
+	if (next_token == NULL)
+		return (NULL);
+	start = sub_strtok(next_token, delim, 1);
+	if (*start == '\0')
+	{
+		next_token = NULL;
+		return (NULL);
+	}
+	end = sub_strtok(start, delim, 0);
+	if (*end != '\0')
+	{
+		*end = '\0';
+		next_token = end + 1;
+	}
+	else
+		next_token = NULL;
+	return (start);
+}
+
+/*
+
 char	*ft_strtok(char *str, const char *delim)
 {
 	static char	*next_token;
@@ -70,6 +117,7 @@ char	*ft_strtok(char *str, const char *delim)
 		next_token = NULL;
 	return (start);
 }
+*/
 
 void    free_array(char **tab)
 {

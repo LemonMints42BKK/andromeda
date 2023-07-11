@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 14:33:00 by pnopjira          #+#    #+#             */
 /*   Updated: 2023/07/04 09:14:51 by pnopjira         ###   ########.fr       */
+=======
+/*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/01 14:33:00 by pnopjira          #+#    #+#             */
+/*   Updated: 2023/07/06 02:32:02 by kchatvet         ###   ########.fr       */
+>>>>>>> 2cad22f80e23a0e1e171745ff5326f20457e29b0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +117,8 @@ int         exe_builtin_cmd(char **tokens, t_andro *data);
 void        echo_cmd(char **tokens);
 void        change_directory(char **tokens);
 void        cmd_pwd(void);
-void        andro_env(t_envlist *env);
+void        cmd_env(char **env); 
+// void        andro_env(t_envlist *env);
 /*exit*/
 void        free_t_simple_com(t_simple_com *temp);
 void        free_t_command(t_command *temp);

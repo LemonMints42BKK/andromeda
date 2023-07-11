@@ -10,9 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS	=	-Wall -Wextra -Werror
+#FLAGS	=	-Wall -Wextra -Werror
 
-## check leak CFLAGS = -Wall  -Wextra -Werror -g -fsanitize=address
+## check leak 
+FLAGS = -Wall  -Wextra -Werror -g -fsanitize=address
 
 NAME	=	minishell
 
@@ -29,6 +30,7 @@ SRCE	=	minishell.c\
 			./bin/exit.c\
 			./bin/pwd.c\
 			./bin/echo.c\
+			./bin/env.c\
 			./bin/exe_cmd.c
 
 # ./src/tokenize.c\
@@ -79,8 +81,11 @@ $(NAME): $(OBJ)
 	@echo "⠈⢿⣄⠀\033[0;33m ⠀⠀⠀⠀⠈⠛⠳⠶⠤⠤⠤⠤⠤⠴⠶⠒⠛⠉⠁⠀⠀⠀\033[0;92m⢀⣠⡴⣞⣋⣤⠶⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀⠙⢷⡶⠛⠳⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣴⣾⠿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 	@echo "⠀⠀ ⠘⣧⡀⣀⣿⠦⣤⣤⣤⣤⣤⣤⠤⠶⠶⠞⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-	@echo "⠀⠀ ⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
-
+	@echo "     ⠈⠉⠉⠀"
+	@echo "   _____       _                     _     "
+	@echo "  |  _  |___ _| |___ ___ _____ ___ _| |___ "
+	@echo "  |     |   | . |  _| . |     | -_| . | .'|"
+	@echo "  |__|__|_|_|___|_| |___|_|_|_|___|___|__,|"
 	@echo " "
 
 #$(LIBFT_LINK): $(OBJ)
