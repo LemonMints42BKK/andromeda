@@ -13,7 +13,7 @@
 #include "minishell.h"
 #include "./src/utiles.h"
 
-int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
+static int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env, t_andro data)
 {
     /* kanit edit on 19/6/2003 */  
     char *args[MAX_CMD_LENGTH];
@@ -30,7 +30,7 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 	
    /* kanit edit on 19/6/2003 */  
 
-    //  cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
+      cmd[ft_strcspn(cmd, "\n")] = '\0';  // Remove trailing newline  
 
 	 //   if (cmd[0] != "\n")
 	//		 cmd[ft_strcspn(cmd, "\n")] = '\0';
@@ -78,17 +78,22 @@ int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 	     else if (pid == 0) 
 	     {
              // Child process
-			 sh_path = ft_strjoin("/bin/", args[0]);
+             if (args[0][0] == '.' && args[0][1] == '/')
+               sh_path = args[0];
+            else 
+               sh_path = ft_strjoin("/bin/", args[0]);
 
 			 
 //			 printf("\n xx %s \n",sh_path);
 			
         //
 		 //      if (execve(test_path, args, NULL) == -1) 
-		     if (execve(sh_path, args, env) == -1) 
-		//	   if (execve(args[0], args, env) == -1) 
+		
+             if (execve(sh_path, args, env) == -1) 
+	
+    	//	   if (execve(args[0], args, env) == -1) 
 	         {
-                 perror("execve");
+                 perror(args[0]);
                  exit(errno);
              }
          } 
@@ -195,7 +200,7 @@ int	main(int argc, char **argv, char **envp)
   /*   handdle check falut */
 		   if (cmd[0] != '\0')
 		     {
-				    status = execute(&cmd[0], envlist, envp);
+				    status = execute(&cmd[0], envlist, envp, data);
 		      } 	
 /*   create in prompt
 //	  if (cmd[0] == '\0' && (status == 2 )) //|| status == 131))
@@ -210,7 +215,7 @@ int	main(int argc, char **argv, char **envp)
        }      
     
 */
-	//    printf("status at mini %d", status);
+	//    printf("status at mini %d\n", status);
 	/*/   while  (status == 2 )
 	   {
 	        status = execute(&cmd[0], envlist, envp);
@@ -218,7 +223,7 @@ int	main(int argc, char **argv, char **envp)
 			break;
 	   }
 	  */ 
-	  //  printf("status at mini %d", status);
+	 //   printf("status at mini %d\n", status);
 	//    printf("\nB\n");	    
 	    cmd[0] = '\0';
 

@@ -30,10 +30,10 @@ int exe_builtin_cmd(char **tokens, char **env)
    {
         cmd_env(env);
    }   
-   else if (ft_strcmp(tokens[0], "./minishell") == 0)
-    {
-        execve("./", tokens, NULL);
-    }   
+//    else if (ft_strcmp(tokens[0], "./minishell") == 0)
+//     {
+//         execve("./", tokens, NULL);
+//     }   
    else
      return (42);
      
