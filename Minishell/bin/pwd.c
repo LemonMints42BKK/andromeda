@@ -6,7 +6,7 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 07:00:03 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/06/21 07:18:30 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/07/12 04:15:32 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void cmd_pwd(void)
 {
     char c_pwd[256];
+    
     if (getcwd(c_pwd, sizeof(c_pwd)) != NULL)
     {
         printf("%s\n", c_pwd);

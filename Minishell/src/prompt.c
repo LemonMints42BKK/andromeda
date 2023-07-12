@@ -6,13 +6,13 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:37:12 by g65420029         #+#    #+#             */
-/*   Updated: 2023/06/24 10:43:58 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/07/12 04:35:51 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*myfgets(char *buffer, int size, FILE *stream,int status)
+char	*myfgets(char *buffer, int size, FILE *stream,t_andro data)
 {
 	char	*line;
     int     c;
@@ -23,7 +23,7 @@ char	*myfgets(char *buffer, int size, FILE *stream,int status)
         return(NULL);
     if (stream->_fileno == 0)
     {
-        if (status != 2 )
+        if (data.status != 2 )
 		     line = readline ("\033[0;92mAn\033[0;33mdro\033[0;91mme\033[0;95mda\033[0;34m$\033[0m ");
          else
            {
@@ -53,11 +53,11 @@ char	*myfgets(char *buffer, int size, FILE *stream,int status)
 		ft_strlcpy(buffer, line, size);
         add_history(line);
         
-        andro_wr_history(line);
+        andro_wr_history(line, data);
 	}
-    else if (status == 2 )
+    else if (data.status == 2 )
         write(1, "\n", 1);
-    status = 0;
+    data.status = 0;
     free(line);
 	return (buffer);
 }

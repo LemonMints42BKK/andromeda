@@ -32,7 +32,7 @@
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_CMD_LENGTH 100
 #define MAX_ARGS 64
-#define HISTORY_FILE ".andro_history"
+#define HISTORY_FILE "/.andro_history"
 
 typedef struct s_data
 {
@@ -43,15 +43,16 @@ typedef struct s_data
 /* data */
 typedef struct s_andro
 {
-    pid_t pid;
     char    **env;
+    char    user_path[256];
+    int     status;
 }   t_andro;
 
 /*prompt*/
-char		*myfgets(char *str, int n, FILE *stream, int status);
+char		*myfgets(char *str, int n, FILE *stream, t_andro data);
 /*history*/
-void		andro_wr_history(char *line);
-void		andro_rd_history(void);
+void		andro_wr_history(char *line, t_andro data);
+void		andro_rd_history(t_andro data);
 /*environment*/
 void		get_env(t_envlist **envlist, char **envp);
 void		free_t_envlist(t_envlist **temp);
@@ -62,7 +63,7 @@ void		pop(t_envlist **head, char *key);
 /*signal*/
 void	enable_signals(void);
 /*Build in*/
-void cmd_cd(t_andro shell_var);
+
 void clean_exit(int code_error, t_envlist *envlist);
 /*exe builtins cmd*/
 int exe_builtin_cmd(char **tokens, char **env);

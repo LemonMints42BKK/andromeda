@@ -6,15 +6,12 @@
 /*   By: kchatvet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:37:07 by kchatvet          #+#    #+#             */
-/*   Updated: 2023/07/06 01:54:58 by kchatvet         ###   ########.fr       */
+/*   Updated: 2023/07/12 04:56:06 by kchatvet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "./src/utiles.h"
-
-
-
 
 int execute(char cmd[MAX_COMMAND_LENGTH], t_envlist *envlist, char **env)
 {
@@ -125,16 +122,25 @@ int	main(int argc, char **argv, char **envp)
 	t_simple_com	*sim_cmd;
 	int status;
 	int ct;
+    t_andro data;
+
 	
   	get_env(&envlist, envp);
 		
 
 	
    // cmd_cd(shell_var);
-
+   
+    getcwd(data.user_path, sizeof(data.user_path));
 	enable_signals();
-	andro_rd_history();
+	andro_rd_history(data);
+//    namep = cmd_pwd();
+//    printf("%s",namep);
+//    cmd_pwd();
 
+    
+    printf("Hi %s\n", data.user_path);
+   
  /*  temp close pat edit	
 	while (1)
 	{
@@ -176,7 +182,7 @@ int	main(int argc, char **argv, char **envp)
       
      //   if (status != 2 )
 	//	{
-           myfgets(cmd, MAX_CMD_LENGTH, stdin, status);  // Read user input
+           myfgets(cmd, MAX_CMD_LENGTH, stdin, data);  // Read user input
           
 	//	}
 	//	else 
